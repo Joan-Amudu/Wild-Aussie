@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h3>I'm extending the base template</h3>
+    {% for post in posts %}
+        {{ post.title }}<br>
+        {{ post.created_by }}<br>
+        {{ post.description}}<br>
+
+    {% endfor %}
+
+{% endblock %}
