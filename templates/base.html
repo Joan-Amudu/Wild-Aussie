@@ -14,9 +14,38 @@
 </head>
 <body>
 
-    <h1>Testing base template</h1>
+<header>
+  <!--Top Navbar-->
+  <nav class="nav-extended blue-grey lighten-5"> 
+    <div class="nav-wrapper">
+      <a href="#!" class="brand-logo black-text">wild aussie</a>
+      <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="fas fa-bars"></i></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a class="black-text" href="">Home</a></li>
+        <li><a class="black-text" href="">Blog</a></li>
+        <li><a class="black-text" href="">My Page</a></li>
+        <li><a class="black-text" href="">Log In</a></li>
+        <li><a class="black-text" href="">Log Out</a></li>
+        <li><a class="black-text" href="">Register</a></li>
+        <li><a class="black-text" href="">Contact Us</a></li>
+        
 
-    <h2>Welcome to Wild Aussie</h2>
+      </ul>
+    </div>
+  </nav>
+<!--Mobile side Nav-->
+  <ul class="sidenav" id="mobile-demo">
+    <li><h4 class="center-align black-text text-darken 4">Wild Aussie</h4></li>
+    <li><a class="black-text" href="">Home</a></li>
+    <li><a class="black-text" href="">Blog</a></li>
+    <li><a class="black-text" href="">My Page</a></li>
+    <li><a class="black-text" href="">Log In</a></li>
+    <li><a class="black-text" href="">Log Out</a></li>
+    <li><a class="black-text" href="">Register</a></li>
+    <li><a class="black-text" href="">Contact Us</a></li>
+  </ul>
+          
+</header>
   
     {% block content %}
 
@@ -28,5 +57,29 @@
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
     {% block scripts %}
     {% endblock %}
+
+    <footer>
+      <footer class="page-footer blue-grey lighten-5">
+        <div class="container">
+          <div class="row">
+            <div class="col l4 offset-l2 s12">
+              <h5 class="black-text">Connect With Us</h5>
+              <ul>
+                <li><a color="blue" href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+                <li><a color="blue" href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a></li>
+                <li><a color="blue" href="https://www.twitter.com" target="_blank"><i class="fab fa-twitter"></i></a></li>
+  
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="footer-copyright">
+          <div class="container">
+          © 2014 Copyright Text
+          <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+          </div>
+        </div>
+      </footer>
+    </footer>
 </body>
 </html>
