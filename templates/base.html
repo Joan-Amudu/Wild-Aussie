@@ -19,7 +19,7 @@
   <nav class="nav-extended blue-grey lighten-5"> 
     <div class="nav-wrapper">
       <a href="#!" class="brand-logo black-text">wild aussie</a>
-      <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="fas fa-bars"></i></a>
+      <a href="#" data-target="mobile-demo" class="sidenav-trigger black-text right"><i class="fas fa-bars"></i></a>
       <ul class="right hide-on-med-and-down">
         <li><a class="black-text" href="">Home</a></li>
         <li><a class="black-text" href="">Blog</a></li>
@@ -35,7 +35,7 @@
   </nav>
 <!--Mobile side Nav-->
   <ul class="sidenav" id="mobile-demo">
-    <li><h4 class="center-align black-text text-darken 4">Wild Aussie</h4></li>
+    <li><h4 class="brand-logo center-align black-text text-darken 4">wild aussie</h4></li>
     <li><a class="black-text" href="">Home</a></li>
     <li><a class="black-text" href="">Blog</a></li>
     <li><a class="black-text" href="">My Page</a></li>
@@ -58,28 +58,21 @@
     {% block scripts %}
     {% endblock %}
 
-    <footer>
-      <footer class="page-footer blue-grey lighten-5">
-        <div class="container">
-          <div class="row">
-            <div class="col l4 offset-l2 s12">
-              <h5 class="black-text">Connect With Us</h5>
-              <ul>
-                <li><a color="blue" href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
-                <li><a color="blue" href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a></li>
-                <li><a color="blue" href="https://www.twitter.com" target="_blank"><i class="fab fa-twitter"></i></a></li>
-  
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="footer-copyright">
-          <div class="container">
-          © 2014 Copyright Text
-          <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
-          </div>
-        </div>
-      </footer>
+   
+    <footer class="blue-grey lighten-5">
+      <div class="row social container">
+          <a color="blue" href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+          <a color="blue" href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+          <a color="blue" href="https://www.twitter.com" target="_blank"><i class="fab fa-twitter"></i></a> 
+      </div>
+      <div class="row center-align copyright">
+          <p class="copyright black-text text-muted">Copyright &copy; wild aussie <span id="copyright"></span></p>         
+       </div>
+             
     </footer>
+
+    <script>
+      $("#copyright").text(new Date().getFullYear());
+  </script>
 </body>
 </html>
