@@ -36,8 +36,31 @@ def my_page():
     return render_template("my_page.html")
 
 
-@app.route("/login")
+@app.route("/login", methods=["GET", "POST"])
 def login():
+    if request.method == "POST":
+        # email address will be used as username
+        # check if email already exists in our database
+        existing_user = mongo.db.users.find_one(
+            {"username": request.form.get("username").lower()})
+        
+        if existing_user:
+            # ensure hashed passower matches user input
+            if check_password_hash(
+                existing_user["password"], request.form.get("password")):
+                session["user"] = request.form.get("username").lower()
+                flash("Welcome, {}".format(request.form.get("username")))
+                return redirect(url_for("my_page"))
+            else:
+                # invalid password match
+                flash("Incorrect Username and/or Password")
+                return redirect(url_for("login"))
+            
+        else:
+            # username doesnt exist
+            flash("Incorrect Username and/or Password")
+            return redirect(url_for("login"))
+
     return render_template("login.html")
 
 
@@ -47,13 +70,9 @@ def logout():
 
 
 @app.route("/register", methods=["GET", "POST"])
-"""
-register user to database
-Code Institute mini project 
-"""
 def register():
     if request.method == "POST":
-        # check if username(email address) already exists in our database
+        # check if username already exists in our database
         existing_user = mongo.db.users.find_one(
             {"username": request.form.get("username").lower()})
 
