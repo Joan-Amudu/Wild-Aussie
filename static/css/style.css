@@ -1,19 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Zilla+Slab:ital,wght@0,300;0,400;1,300&display=swap');
 
-body{
+body {
     font-family: Zilla Slab;
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
+
 }
 
-main {
-    flex: 1 0 auto;
-  }
 
- .brand-logo{
+ .brand-logo {
      font-family: Dancing Script;
  }
+
+.content {
+  background-color: #fbf7ef;
+}
+
+
+
+ /*-- Footer --*/
 
  .social {
     display: flex;
@@ -26,6 +29,3 @@ main {
     padding: 0 50px;
   }
 
-  footer .copyright {
-    margin-bottom: 0;
-  }
