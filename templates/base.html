@@ -24,7 +24,7 @@
       <ul class="right hide-on-med-and-down">
         <li><a class="black-text" href="{{ url_for('home') }}">Home</a></li>
         <li><a class="black-text" href="{{ url_for('get_posts') }}">Blog</a></li>
-        <li><a class="black-text" href="{{ url_for('my_page') }}">My Page</a></li>
+        <li><a class="black-text" href="{{ url_for('my_page', username=session['user']) }}">My Page</a></li>
         <li><a class="black-text" href="{{ url_for('login') }}">Log In</a></li>
         <li><a class="black-text" href="{{ url_for('logout') }}">Log Out</a></li>
         <li><a class="black-text" href="{{ url_for('register') }}">Register</a></li>
@@ -39,7 +39,7 @@
     <li><h4 class="brand-logo center-align black-text text-darken 4">wild aussie</h4></li>
     <li><a class="black-text" href="{{ url_for('home') }}">Home</a></li>
     <li><a class="black-text" href="{{ url_for('get_posts') }}">Blog</a></li>
-    <li><a class="black-text" href="{{ url_for('my_page') }}">My Page</a></li>
+    <li><a class="black-text" href="{{ url_for('my_page', username=session['user']) }}">My Page</a></li>
     <li><a class="black-text" href="{{ url_for('login') }}">Log In</a></li>
     <li><a class="black-text" href="{{ url_for('logout') }}">Log Out</a></li>
     <li><a class="black-text" href="{{ url_for('register') }}">Register</a></li>
