@@ -35,8 +35,11 @@ def get_posts():
 def my_page(username):
     # grab the session user's username from database
     username = mongo.db.users.find_one(
-        {"username": session["user"]})["username"]        
-    return render_template("my_page.html", username=username)
+        {"username": session["user"]})["username"] 
+
+    if session["user"]:
+        return render_template("my_page.html", username=username)
+    return redirect(url_for("login"))
 
 
 @app.route("/login", methods=["GET", "POST"])
@@ -46,7 +49,7 @@ def login():
         # check if email already exists in our database
         existing_user = mongo.db.users.find_one(
             {"username": request.form.get("username").lower()})
-        
+
         if existing_user:
             # ensure hashed passower matches user input
             if check_password_hash(
@@ -58,7 +61,7 @@ def login():
                 # invalid password match
                 flash("Incorrect Username and/or Password")
                 return redirect(url_for("login"))
-            
+          
         else:
             # username doesnt exist
             flash("Incorrect Username and/or Password")
@@ -69,7 +72,10 @@ def login():
 
 @app.route("/logout")
 def logout():
-    return render_template("logout.html")
+    # remove user from session cookie
+    flash("You have been logged out")
+    session.pop("user")
+    return redirect(url_for("login"))
 
 
 @app.route("/register", methods=["GET", "POST"])
