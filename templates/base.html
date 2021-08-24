@@ -49,12 +49,26 @@
 </header>
 {% endblock %}
 
-      <!-- Content -->
-      <div class="content" id="content">{% block content %}{% endblock %}</div>
-   
- 
+      <section>
+        <!-- Flash Messages -->
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            {% for message in messages %}
+              <div class="row flashes">
+                <h4 class="center-align green">{{ message }}</h4>
+              </div>
+            {% endfor%}
+          {% endif %}
+        {% endwith %}
+      </section>
 
-    <!-- footer -->
+      <!-- Content -->
+      <main class="content container">        
+        {% block content %}
+        {% endblock %}
+      </main>
+   
+     <!-- footer -->
     <footer class="blue-grey lighten-5">
       {% block footer %}
       <div class="row social container">
