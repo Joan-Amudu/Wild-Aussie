@@ -16,6 +16,7 @@
 
 <header>
   <!--Top Navbar-->
+  {% block header %}
   <nav class="nav-extended blue-grey lighten-5"> 
     <div class="nav-wrapper">
       <a href="#!" class="brand-logo black-text">wild aussie</a>
@@ -46,35 +47,39 @@
   </ul>
           
 </header>
-  
-    {% block content %}
+{% endblock %}
 
-  
-
-    {% endblock %}
+      <!-- Content -->
+      <div class="content" id="content">{% block content %}{% endblock %}</div>
    
-    <script src="https://code.jquery.com/jquery-3.6.0.js"
-      integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script> 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
-    {% block scripts %}
-    {% endblock %}
+ 
 
-   
+    <!-- footer -->
     <footer class="blue-grey lighten-5">
+      {% block footer %}
       <div class="row social container">
           <a color="blue" href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
           <a color="blue" href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
           <a color="blue" href="https://www.twitter.com" target="_blank"><i class="fab fa-twitter"></i></a> 
       </div>
-      <div class="row center-align copyright">
+      <div class="footer-copyright center-align">
           <p class="copyright black-text text-muted">Copyright &copy; wild aussie <span id="copyright"></span></p>         
        </div>
              
     </footer>
+    {% endblock %}
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+    integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script> 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 
     <script>
       $("#copyright").text(new Date().getFullYear());
   </script>
+
+{% block scripts %}
+{% endblock %}
+
 </body>
 </html>
