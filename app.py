@@ -9,6 +9,7 @@ if os.path.exists("env.py"):
     import env
 
 
+
 app = Flask(__name__)
 
 app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
@@ -19,9 +20,9 @@ mongo = PyMongo(app)
 
 
 @app.route("/")
-@app.route("/home")
-def home():
-    return render_template("home.html")
+@app.route("/index")
+def index():
+    return render_template("index.html")
 
 
 @app.route("/get_posts")
