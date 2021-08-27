@@ -1,4 +1,5 @@
 import os
+import json
 from flask import (
     Flask, flash, render_template,
     redirect, request, session, url_for)
@@ -7,7 +8,6 @@ from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
 if os.path.exists("env.py"):
     import env
-
 
 
 app = Flask(__name__)
@@ -22,23 +22,24 @@ mongo = PyMongo(app)
 @app.route("/")
 @app.route("/home")
 def home():
-    return render_template("home.html")
+    return render_template("home.html", page_title="Home")
 
 
 @app.route("/get_posts")
 def get_posts():
     posts = mongo.db.blog.find()
-    return render_template("blog.html", posts=posts)
+    return render_template("blog.html", posts=posts, page_title="Blog")
 
 
 @app.route("/my_page/<username>", methods=["GET", "POST"])
 def my_page(username):
     # grab the session user's username from database
     username = mongo.db.users.find_one(
-        {"username": session["user"]})["username"] 
+        {"username": session["user"]})["username"]
+    posts = mongo.db.blog.find()
 
     if session["user"]:
-        return render_template("my_page.html", username=username)
+        return render_template("my_page.html", username=username, posts=posts)
     return redirect(url_for("login"))
 
 
@@ -61,13 +62,13 @@ def login():
                 # invalid password match
                 flash("Incorrect Username and/or Password")
                 return redirect(url_for("login"))
-          
+
         else:
             # username doesnt exist
             flash("Incorrect Username and/or Password")
             return redirect(url_for("login"))
 
-    return render_template("login.html")
+    return render_template("login.html", page_title="Log In")
 
 
 @app.route("/logout")
@@ -99,12 +100,12 @@ def register():
         session["user"] = request.form.get("username").lower()
         flash("Registration Successful")
         return redirect(url_for("my_page", username=session["user"]))
-    return render_template("register.html")
+    return render_template("register.html", page_title="Register")
 
 
 @app.route("/contact")
 def contact():
-    return render_template("contact_us.html")
+    return render_template("contact_us.html", page_title="Contact Us")
 
 
 if __name__ == "__main__":
