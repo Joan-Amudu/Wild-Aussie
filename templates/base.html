@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Favicon -->
+    <link rel="icon" href="{{ url_for('static', filename='images/favicon.svg') }}"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" 
     integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" type="text/css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" type="text/css">
@@ -17,14 +19,15 @@
 <header>
   <!--Top Navbar-->
   {% block header %}
-  <nav class="nav-extended blue-grey lighten-5"> 
+  <nav class="nav-extended transparent"> 
     <div class="nav-wrapper">
-      <a href="#!" class="brand-logo black-text">wild aussie</a>
-      <a href="#" data-target="mobile-demo" class="sidenav-trigger black-text right"><i class="fas fa-bars"></i></a>
+      <a href="{{ url_for('home') }}" class="brand-logo red-text darken-4">wild aussie</a>
+      <a href="{{ url_for('home') }}" data-target="mobile-demo" class="sidenav-trigger black-text right"><i class="fas fa-bars"></i></a>
       <ul class="right hide-on-med-and-down">
         <li><a class="black-text" href="{{ url_for('home') }}">Home</a></li>       
-        <li><a class="black-text" href="{{ url_for('get_posts') }}">Blog</a></li>
+       
         {% if session.user %}
+        <li><a class="black-text" href="{{ url_for('get_posts') }}">Blog</a></li>
           <li><a class="black-text" href="{{ url_for('my_page', username=session['user']) }}">My Page</a></li>
           <li><a class="black-text" href="{{ url_for('logout') }}">Log Out</a></li>
         {% else %}
@@ -38,10 +41,10 @@
   </nav>
 <!--Mobile side Nav-->
   <ul class="sidenav" id="mobile-demo">
-    <li><h4 class="brand-logo center-align black-text text-darken 4">wild aussie</h4></li>
-    <li><a class="black-text" href="{{ url_for('home') }}">Home</a></li>
-    <li><a class="black-text" href="{{ url_for('get_posts') }}">Blog</a></li>
+    <li><h4 class="brand-logo center-align red-text darken-4">wild aussie</h4></li>
+    <li><a class="black-text" href="{{ url_for('home') }}">Home</a></li>    
     {% if session.user %}
+    <li><a class="black-text" href="{{ url_for('get_posts') }}">Blog</a></li>
       <li><a class="black-text" href="{{ url_for('my_page', username=session['user']) }}">My Page</a></li>
       <li><a class="black-text" href="{{ url_for('logout') }}">Log Out</a></li>
     {% else %}
@@ -67,6 +70,11 @@
         {% endwith %}
       </section>
 
+      <section class="banner">
+        {% block banner %}
+        {% endblock %}
+      </section>
+
       <!-- Content -->
       <main class="content">        
         {% block content %}
@@ -74,7 +82,7 @@
       </main>
    
      <!-- footer -->
-    <footer class="blue-grey lighten-5">
+    <footer class="transparent">
       {% block footer %}
       <div class="row social container">
           <a color="blue" href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
