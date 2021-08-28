@@ -3,57 +3,23 @@
 {% block banner%}
 <div class="profile parallax-container">
   <div class="parallax"><img src="{{ url_for('static', filename='images/profile.jpeg') }}"></div>
-    <h3 class="center-align">{{username}}'s Profile</h3>              
-</div>
+    <h3 class="center-align">{{username}}'s Profile</h3>           
+</div> 
+<div class="section white">
+  <div class="row container">
+    <h2 class="header center-align">Get Creative</h2>
+    <p class="grey-text text-darken-3 lighten-3">Here you can add events and posts that you love</p>
 
-  
-  <!-- Dropdown Trigger -->
-  <a class='dropdown-trigger btn btn-large cyan' href='#' data-target="dropdown1"><i class="fas fa-plus-circle"> Add to Page</i></a>
+    <a class="waves-effect waves-light transparent btn-small btn-flat modal-trigger" href="{{ url_for('create_post') }}"><i class="fas fa-plus-circle"> Create Post</i></a>
+    <a class="waves-effect waves-light transparent btn-small btn-flat modal-trigger" href="#modal2"><i class="fas fa-plus-circle"> Create Event</i></a>
+  </div>
+</div>
  
-  <!-- Dropdown Structure -->
-  <ul id='dropdown1' class='dropdown-content'>
-    <li><a class="waves-effect waves-light btn-flat modal-trigger" href="#modal1">Post</a></li>
-    <li><a class="waves-effect waves-light btn-flat modal-trigger" href="#modal1">Event</a></li>
-  </ul>
-  
 
 {% endblock %}
 
 {% block content %}
 
-<!-- Modal Structure -->
-<div id="modal1" class="modal">
-  <div class="modal-content">
-      <div class="row">
-          <form class="col s12">
-              <div class="row">
-                  <div class="input-field col s12">
-                    <textarea id="title" class="materialize-textarea"></textarea>
-                    <label for="title">Title</label>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="input-field col s12">
-                    <textarea id="image" class="materialize-textarea"></textarea>
-                    <label for="image">Image</label>
-                    <span>Please add url for image</span>
-                  </div>
-                </div>
-            <div class="row">
-              <div class="input-field col s12">
-                <textarea id="description" class="materialize-textarea"></textarea>
-                <label for="description">Description</label>
-              </div>
-            </div>
-          </form>
-        </div>
-              
-  </div>
-  <div class="modal-footer">
-    <a href="#!" class="modal-close waves-effect waves-green btn-flat">Add</a>
-  </div>
-</div>
-</div>
 
 <h4>My events</h4>
 
@@ -108,7 +74,7 @@
             <div class="card-action">
               <span>
                 <strong>
-                  Created by: {{ post.created_by }}
+                  <em>Created by: {{ post.created_by }}</em>
                 </strong>
               </span>
             </div>

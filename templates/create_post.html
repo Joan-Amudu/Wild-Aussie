@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="row">
+    <!--Contact Title-->
+    <div class="col s12">
+       <h3 class="center-align">Create Post</h3>
+       <h5 class="center-align">What would you like to create today?</h5>
+    </div>
+   
+            <form class="col s12 m8 offset-m2" method="POST" action="">
+                <div class="card-panel">
+                <!-- Title -->
+                <div class="row">
+                    <div class="input-field col s12">
+                      <input id="title" name="title" class="validate"></input>
+                      <label for="title">Title</label>
+                    </div>
+                  </div>
+                   <!-- Image -->
+                  <div class="row">
+                    <div class="input-field col s12">
+                    
+                      <input id="image" name="image" class="validate"></input>
+                      <label for="image">Image</label>
+                      <span>Please add url for image</span>
+                    </div>
+                  </div>
+                   <!-- Description -->                
+              <div class="row">
+                <div class="input-field col s12">
+                  <textarea id="description" name="description" class="materialize-textarea validate"></textarea>
+                  <label for="description">Description</label>
+                </div>
+              </div>
+              <div class="row">
+                <button class="btn waves-effect waves-light" type="submit" name="action">Add Post                    
+                  </button>
+              </div>
+            </form>
+        </div>                
+    </div>
+  </div>
+</div>
+
+{% endblock %}
