@@ -28,7 +28,9 @@ main {
     padding: 5%;
 }
 
-
+.profile {
+  height: 200px;
+}
 
  /*-- Footer --*/
 

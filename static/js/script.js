@@ -7,4 +7,5 @@ $(document).ready(function(){
     $('.modal').modal(); // Add Post Modal
     $('.tooltipped').tooltip();
     $('.parallax').parallax();
+    $('.dropdown-trigger').dropdown();
   });
