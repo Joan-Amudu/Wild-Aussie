@@ -108,6 +108,23 @@ def contact():
     return render_template("contact_us.html", page_title="Contact Us")
 
 
+@app.route("/create_post", methods=["GET", "POST"])
+def create_post():
+    if request.method == "POST":
+        task = {
+            "title": request.form.get("title"),
+            "created_by": session["user"],
+            "description": request.form.get("description"),
+            "image_url": request.form.get("image_url")
+        }
+        mongo.db.blog.insert_one(task)
+        flash("Post added successfully")
+        return redirect(url_for("create_post"))
+
+    posts = mongo.db.blog.find()
+    return render_template("create_post.html", posts=posts)
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
