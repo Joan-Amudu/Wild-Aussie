@@ -49,13 +49,13 @@ def login():
         # email address will be used as username
         # check if email already exists in our database
         existing_user = mongo.db.users.find_one(
-            {"username": request.form.get("username").lower()})
+            {"username": request.form.get("username").capitalize()})
 
         if existing_user:
             # ensure hashed passower matches user input
             if check_password_hash(
                     existing_user["password"], request.form.get("password")):
-                session["user"] = request.form.get("username").lower()
+                session["user"] = request.form.get("username").capitalize()
                 flash("Welcome, {}".format(request.form.get("username")))
                 return redirect(url_for("my_page", username=session["user"]))
             else:
@@ -84,20 +84,20 @@ def register():
     if request.method == "POST":
         # check if username already exists in our database
         existing_user = mongo.db.users.find_one(
-            {"username": request.form.get("username").lower()})
+            {"username": request.form.get("username").capitalize()})
 
         if existing_user:
             flash("Username already exists")
             return redirect(url_for("register"))
 
         register = {
-            "username": request.form.get("username").lower(),
+            "username": request.form.get("username").capitalize(),
             "password": generate_password_hash(request.form.get("password"))
         }
         mongo.db.users.insert_one(register)
 
         # put the new user into 'session' cookie
-        session["user"] = request.form.get("username").lower()
+        session["user"] = request.form.get("username").capitalize()
         flash("Registration Successful")
         return redirect(url_for("my_page", username=session["user"]))
     return render_template("register.html", page_title="Register")
@@ -127,6 +127,16 @@ def create_post():
 
 @app.route("/edit_post/<blog_id>", methods=["GET", "POST"])
 def edit_post(blog_id):
+    if request.method == "POST":
+        edits = {
+            "title": request.form.get("title"),
+            "created_by": session["user"],
+            "description": request.form.get("description"),
+            "image_url": request.form.get("image_url")
+        }
+        mongo.db.blog.update({"_id": ObjectId(blog_id)}, edits)
+        flash("Post updated successfully")
+
     post = mongo.db.blog.find_one({"_id": ObjectId(blog_id)})
 
     posts = mongo.db.blog.find()
