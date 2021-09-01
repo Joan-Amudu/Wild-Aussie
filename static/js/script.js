@@ -4,7 +4,7 @@
 
 $(document).ready(function(){
     $('.sidenav').sidenav({edge: "right"});
-    $('.modal').modal(); // Add Post Modal
+    $('.modal').modal(); 
     $('.tooltipped').tooltip();
     $('.parallax').parallax();
     $('.dropdown-trigger').dropdown();
