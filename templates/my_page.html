@@ -57,7 +57,6 @@
 <!--New registred users will arrive at a blank page where they can start to create their own posts/events-->
 
 <div class="row">
-
   {% for post in posts  %}
   {% if session.user|lower == post.created_by|lower %}
   <div class="col s12 m4">
@@ -65,47 +64,41 @@
         <!-- Default Image -->
           <div class="card-image">
               <img src="{{ post.image_url }}">            
+          </div>
+          <div class="card-content">
+            <span class="card-title">
+              <strong>{{ post.title }}</strong>
+            </span>
+            <p>{{ post.description }}</p>
+          </div>
+          <div class="card-action">
+            <span>
+              <strong>
+                <em>Created by: {{ post.created_by }}</em>
+              </strong>
+            </span>
+          <div class="right">               
+            <a class="black-text" href="{{ url_for('edit_post', blog_id=post._id) }}"><em>Edit</em></a>
+            <!-- Modal Trigger -->
+            <a class="black-text modal-trigger" href="#modal1"><em>Delete</em></a>                
+          </div>
+        <div class="delete_modal">
+          <!-- Modal Structure -->
+          <div id="modal1" class="modal">
+            <div class="modal-content">
+              <h4>Are you sure you want to delete post?</h4>
+              <p>Deleted posts cannot be retrieved</p>
             </div>
-            <div class="card-content">
-              <span class="card-title">
-                <strong>
-                  {{ post.title }}
-                </strong>
-              </span>
-              <p>
-                {{ post.description }}
-              </p>
+            <div class="modal-footer">
+              <a href="{{ url_for('delete_post', blog_id=post._id) }}"
+               class="modal-close waves-effect waves-green btn-flat">Yes</a>
+              <a href="{{ url_for('my_page', username=session['user']) }}"
+               class="modal-close waves-effect waves-green btn-flat">No</a>
             </div>
-            <div class="card-action">
-              <span>
-                <strong>
-                  <em>Created by: {{ post.created_by }}</em>
-                </strong>
-              </span>
-              <div class="right">               
-                  <a class="black-text" href="{{ url_for('edit_post', blog_id=post._id) }}"><em>Edit</em></a>
-                  <a class="black-text modal-trigger" href="#modal1"><em>Delete</em></a>                
-              </div>
-              <div class="row">
-                <!-- Modal Trigger -->
- 
-
-  <!-- Modal Structure -->
-  <div id="modal1" class="modal">
-    <div class="modal-content">
-      <h4>Are you sure you want to delete post?</h4>
-      <p>Deleted posts cannot be retrieved</p>
-    </div>
-    <div class="modal-footer">
-      <a href="{{ url_for('delete_post', blog_id=post._id) }}" class="modal-close waves-effect waves-green btn-flat">Yes</a>
-      <a href="{{ url_for('my_page', username=session['user']) }}" class="modal-close waves-effect waves-green btn-flat">No</a>
-
+        </div>          
+      </div>
     </div>
   </div>
-          
-              </div>
-            </div>
-        </div>
   </div>
   {% endif %}
   {% endfor %}

@@ -27,7 +27,7 @@ def home():
 
 @app.route("/get_posts")
 def get_posts():
-    posts = mongo.db.blog.find()
+    posts = list(mongo.db.blog.find().sort("title", 1))
     return render_template("blog.html", posts=posts, page_title="Blog")
 
 
