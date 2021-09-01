@@ -3,45 +3,53 @@
 {% block content %}
 
 <div class="row">
-    <!--Contact Title-->
-    <div class="col s12">
-       <h3 class="center-align">Create Post</h3>
-       <h5 class="center-align">What would you like to create today?</h5>
-    </div>
-   
-            <form class="col s12 m8 offset-m2" method="POST" action="">
-                <div class="card-panel">
-                <!-- Title -->
-                <div class="row">
-                    <div class="input-field col s12">
-                      <input id="title" name="title" class="validate"></input>
-                      <label for="title">Title</label>
-                    </div>
-                  </div>
-                   <!-- Image -->
-                  <div class="row">
-                    <div class="input-field col s12">
-                    
-                      <input id="image_url" name="image_url" type="url" class="validate"></input>
-                      <label for="image_url">Image</label>
-                      <span>Please add url for image</span>
-                    </div>
-                  </div>
-                   <!-- Description -->                
+  <!--Contact Title-->
+  <div class="col s12">
+     <h3 class="center-align">Create Event</h3>
+     <h5 class="center-align">What would you like to create today?</h5>
+  </div>
+ 
+          <form class="col s12 m8 offset-m2" method="POST" action="">
+              <div class="card-panel">
+              <!-- Title -->
               <div class="row">
                 <div class="input-field col s12">
-                  <textarea id="description" name="description" class="materialize-textarea validate"></textarea>
-                  <label for="description">Description</label>
+                  <input id="title" name="title"  type="text" class="validate"></input>
+                  <label for="title">Title</label>
                 </div>
               </div>
+                 <!-- Image -->
+                <div class="row">
+                  <div class="input-field col s12">                    
+                    <input id="image_url" name="image_url" type="url" class="validate"></input>
+                    <label for="image_url">Image</label>
+                    <span>Please add url for image</span>
+                  </div>
+                </div>
+                
+              <!-- location -->                
               <div class="row">
-                <button class="btn waves-effect waves-light" type="submit" name="action">Add Post                    
-                  </button>
+                <div class="input-field col s12">
+                  <input id="location" name="location"  type="text" class="validate"></input>
+                  <label for="location">Location</label>
+                </div>
               </div>
-            </form>
-        </div>                
-    </div>
+                <!-- due date picker -->
+          <div class="row">
+            <div class="input-field col s12">                  
+                <input id="date" name="date" type="text" class="datepicker validate" required>
+                <label for="date">Due Date</label>
+            </div>
+        </div>
+                 
+            <div class="row">
+              <button class="btn waves-effect waves-light" type="submit" name="action">Add Event                    
+                </button>
+            </div>
+          </form>
+      </div>                
   </div>
+</div>
 </div>
 
 {% endblock %}

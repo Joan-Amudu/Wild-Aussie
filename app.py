@@ -114,8 +114,9 @@ def create_post():
         task = {
             "title": request.form.get("title"),
             "created_by": session["user"],
-            "description": request.form.get("description"),
-            "image_url": request.form.get("image_url")
+            "location": request.form.get("location"),
+            "image_url": request.form.get("image_url"),
+            "date": request.form.get("date")
         }
         mongo.db.blog.insert_one(task)
         flash("Post added successfully")
