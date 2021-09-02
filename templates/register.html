@@ -5,18 +5,13 @@
     <!-- Register Title -->
     <div class="col s12">
        <h3 class="center-align">{{page_title}}</h3>
-       <h5 class="center-align">We'd Love For You To Join Us</h5>
+    
     </div>
     <!-- Register Form -->
     <div class="row">
         <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('register') }}">
-            <div class="card-panel">
-                <!--Register Image-->  
-                <div class="row">
-                    <div class="col s12"> 
-                    <img src="{{ url_for('static', filename='images/register.jpeg') }}" alt="Smiling Kangaroo" class="responsive-img">
-                    </div>
-                </div>
+            <div>
+
                  <!-- First Name Last Name -->
                 <div class="row">
                     <div class="input-field col s6">
@@ -55,7 +50,7 @@
                 </div>
                 <!-- Register -->
                 <div class="row center-align">
-                    <button class="btn waves-effect waves-light" type="submit" name="action">
+                    <button class="btn transparent black-text" type="submit" name="action">
                        Register    
                     </button>
                 </div>
