@@ -1,34 +1,31 @@
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Zilla+Slab:ital,wght@0,300;0,400;1,300&display=swap');
 
+
 body {
-    font-family: Zilla Slab;
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
-  
-   
+  font-family: Zilla Slab;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
 }
-
-
 
 main {
   flex: 1 0 auto;
 }
 
-
- .brand-logo {
-     font-family: Dancing Script;
-     padding-left: 10px;
+.brand-logo {
+  font-family: Dancing Script;
+  padding-left: 10px;
      
- }
-.btn {
+}
+
+ .btn {
   border-radius: 25px;
   border: 2px solid #000;
 }
  
 .content {
   background-color: #E3E8EE;
-    padding: 5%;
+  padding: 5%;
 }
 
 .profile {
