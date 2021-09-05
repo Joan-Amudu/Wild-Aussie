@@ -31,6 +31,14 @@ def get_posts():
     return render_template("blog.html", posts=posts, page_title="Blog")
 
 
+@app.route("/search", methods=["GET", "POST"])
+def search():
+    query = request.form.get("query")
+    posts = list(mongo.db.blog.find(
+        {"$text": {"$search": query}}).sort("title", 1))
+    return render_template("blog.html", posts=posts, page_title="Blog")
+
+
 @app.route("/my_page/<username>", methods=["GET", "POST"])
 def my_page(username):
     # grab the session user's username from database
@@ -132,8 +140,9 @@ def edit_post(blog_id):
         edits = {
             "title": request.form.get("title"),
             "created_by": session["user"],
-            "description": request.form.get("description"),
-            "image_url": request.form.get("image_url")
+            "location": request.form.get("location"),
+            "image_url": request.form.get("image_url"),
+            "date": request.form.get("date")
         }
         mongo.db.blog.update({"_id": ObjectId(blog_id)}, edits)
         flash("Post updated successfully")

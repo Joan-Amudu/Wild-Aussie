@@ -63,11 +63,15 @@
           {% if messages %}
             {% for message in messages %}
               <div class="row flashes">
-                <h4 class="center-align green">{{ message }}</h4>
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+                <h4 class="center-align">{{ message }}</h4>
+                  
               </div>
             {% endfor%}
           {% endif %}
         {% endwith %}
+        
+  
       </section>
 
       <section class="banner">
