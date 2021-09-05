@@ -3,11 +3,12 @@
 
 body {
   font-family: Zilla Slab;
+  /*-- Sticky Footer--*/
   display: flex;
   min-height: 100vh;
   flex-direction: column;
 }
-
+/*-- Sticky Footer--*/
 main {
   flex: 1 0 auto;
 }
@@ -47,4 +48,3 @@ main {
 
 
   /*-- Media Queries --*/
-  
