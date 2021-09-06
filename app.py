@@ -1,5 +1,4 @@
 import os
-import json
 from flask import (
     Flask, flash, render_template,
     redirect, request, session, url_for)
@@ -60,7 +59,7 @@ def login():
             {"username": request.form.get("username").lower()})
 
         if existing_user:
-            # ensure hashed passower matches user input
+            # ensure hashed password matches user input
             if check_password_hash(
                     existing_user["password"], request.form.get("password")):
                 session["user"] = request.form.get("username").lower()

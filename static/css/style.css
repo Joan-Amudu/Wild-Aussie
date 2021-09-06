@@ -3,15 +3,41 @@
 
 body {
   font-family: Zilla Slab;
+    /*-- Sticky Footer--*/
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
   /*-- Sticky Footer--*/
-  display: flex;
-  min-height: 100vh;
-  flex-direction: column;
+  main {
+    flex: 1 0 auto;
 }
-/*-- Sticky Footer--*/
-main {
-  flex: 1 0 auto;
+
+hr {
+  width: 100px;
+  height: 5px;
+  border: 0;
+  background-color: #28a745;
 }
+
+.hero_image {
+  height: 600px;
+    width: 100%; 
+    padding-top: 10%;
+   
+    background: url('../images/hero-image.jpeg') no-repeat center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    overflow: hidden;
+    position: relative;
+}
+/* subscribe button 
+.subscribe {
+padding: 22px;
+
+}*/
 
 /* The alert message box */
 .flashes {
