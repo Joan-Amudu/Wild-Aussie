@@ -2,6 +2,7 @@ import os
 from flask import (
     Flask, flash, render_template,
     redirect, request, session, url_for)
+from datetime import timedelta
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -76,6 +77,12 @@ def login():
             return redirect(url_for("login"))
 
     return render_template("login.html", page_title="Log In")
+
+
+@app.before_request
+def set_session_timeout():
+    session.permanent = True
+    app.permanent_session_lifetime = timedelta(minutes=50)
 
 
 @app.route("/logout")

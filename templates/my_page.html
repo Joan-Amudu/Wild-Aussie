@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 
 {% block banner %}
-<div class="row profile parallax-container">
-   <div class="parallax">
-      <img src="{{ url_for('static', filename='images/profile.jpeg') }}">
+<div class="row">
+   <div class="col">
+
    </div>
-   <div class="center-align">
+   <div class="col center-align">
       <h3 class="center-align">{{ username }}'s Profile</h3>
       <a class="transparent btn-small btn-flat" href="{{ url_for('create_post') }}">
       <i class="fas fa-plus"> Create Event</i>
