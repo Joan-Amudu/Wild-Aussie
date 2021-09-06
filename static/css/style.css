@@ -19,6 +19,10 @@ hr {
   border: 0;
   background-color: #28a745;
 }
+nav,
+footer {
+  color: #000;
+}
 
 .hero_image {
   height: 600px;
@@ -91,7 +95,7 @@ padding: 22px;
  .social {
     display: flex;
     justify-content: center;
-    padding-top: 10px;
+    padding-top: 20px;
   }
   
   .social a {

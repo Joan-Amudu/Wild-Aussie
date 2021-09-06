@@ -19,21 +19,21 @@
 <header>
   <!--Top Navbar-->
   {% block header %}
-  <nav class="nav-extended transparent"> 
+  <nav class="nav-extended black"> 
     <div class="nav-wrapper">
-      <a href="{{ url_for('home') }}" class="brand-logo red-text darken-4">wild aussie</a>
+      <a href="{{ url_for('home') }}" class="brand-logo white-text darken-4">wild aussie</a>
       <a href="{{ url_for('home') }}" data-target="mobile-demo" class="sidenav-trigger black-text right"><i class="fas fa-bars"></i></a>
       <ul class="right hide-on-med-and-down">
-        <li><a class="black-text" href="{{ url_for('home') }}">Home</a></li>       
+        <li><a class="white-text" href="{{ url_for('home') }}">Home</a></li>       
        
         {% if session.user %}
-        <li><a class="black-text" href="{{ url_for('get_posts') }}">Blog</a></li>
-          <li><a class="black-text" href="{{ url_for('my_page', username=session['user']) }}">My Page</a></li>
-          <li><a class="black-text" href="{{ url_for('logout') }}">Log Out</a></li>
+        <li><a class="white-text" href="{{ url_for('get_posts') }}">Blog</a></li>
+          <li><a class="white-text" href="{{ url_for('my_page', username=session['user']) }}">My Page</a></li>
+          <li><a class="white-text" href="{{ url_for('logout') }}">Log Out</a></li>
         {% else %}
-          <li><a class="black-text" href="{{ url_for('login') }}">Log In</a></li>     
-          <li><a class="black-text" href="{{ url_for('register') }}">Register</a></li>
-          <li><a class="black-text" href="{{ url_for('contact') }}">Contact Us</a></li>
+          <li><a class="white-text" href="{{ url_for('login') }}">Log In</a></li>     
+          <li><a class="white-text" href="{{ url_for('register') }}">Register</a></li>
+          <li><a class="white-text" href="{{ url_for('contact') }}">Contact Us</a></li>
         {% endif %}
 
       </ul>
@@ -87,26 +87,19 @@
    
      <!-- footer -->
      
-     <footer class="page-footer transparent">
-      <div class="container">
+     <footer class="black">
+      <div class="row social container">
         <div class="row">
-    
-          <div class="col l4 offset-l2 s12">
-            <h5 class="black-text">Socials</h5>
-            <ul>
-              <li><a class="black-text text-lighten-3" href="https://www.facebook.com/" target="blank">Facebook</a></li>
-              <li><a class="black-text text-lighten-3" href="https://www.instagram.com/" target="blank">Instagram</a></li>
-              <li><a class="black-text text-lighten-3" href="https://www.twitter.com/" target="blank">Twitter</a></li>             
-            </ul>
-          </div>
-          
+          <a class="white-text" href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+          <a class="white-text" href="https://www.twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+          <a class="white-text" href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>          
         </div>
       </div>
-      <div class="footer-copyright">
-        <div class="container">
-          <p class="copyright black-text text-muted">Copyright &copy; wild aussie <span id="copyright"></span></p>      
+      
+        <div class="row center-align copyright">
+          <p class="white-text text-muted">Copyright &copy; wild aussie <span id="copyright"></span></p>      
         </div>
-      </div>
+     
     </footer>
         
 
