@@ -1,29 +1,26 @@
 {% extends "base.html" %}
 
-
-{% block content %}
-
+{% block banner %}
 <div class="row profile parallax-container">
    <div class="parallax">
       <img src="{{ url_for('static', filename='images/profile.jpeg') }}">
    </div>
    <div class="center-align">
       <h3 class="center-align">{{ username }}'s Profile</h3>
-      <button class="transparent btn-small btn-flat modal-trigger"
-         href="{{ url_for('create_post') }}">
+      <a class="transparent btn-small btn-flat" href="{{ url_for('create_post') }}">
       <i class="fas fa-plus"> Create Event</i>
-      </button>
+      </a>
    </div>
  </div>
+ {% endblock %}
 
- <hr>
+{% block content %}
 
 <h4>My Posts</h4>
-
    
 <div class="row">
   {% for post in posts %}
-  {% if session.user|lower == post.created_by|lower %}
+  {% if session.user|capitalize == post.created_by|capitalize %}
   <div class="col s12 m4">
      <div class="card">
         <div class="card-image">
