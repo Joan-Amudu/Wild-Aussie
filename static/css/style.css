@@ -17,7 +17,7 @@ hr {
   width: 100px;
   height: 5px;
   border: 0;
-  background-color: #28a745;
+  background-color: #ffff00;
 }
 nav,
 footer {
@@ -72,13 +72,16 @@ padding: 22px;
 
 .brand-logo {
   font-family: Dancing Script;
-  padding-left: 10px;
+  padding-left: 30px;
      
 }
 
  .btn {
   border-radius: 25px;
-  border: 2px solid #000;
+  border: 2px solid #ffff00;
+}
+btn:hover{
+  color: #ffff00;
 }
  
 .content {

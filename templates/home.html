@@ -3,16 +3,14 @@
 {% block banner %}
 <div class="hero_image">
   <div class="row center-align">
-    <h4 class="white-text">Lifelong memories,</h4>
-    <h4 class="orange-text">Just a few seconds away</h4>
+    <h3 class="white-text center-align">Create</h3>
+    <h3 class="white-text">Lifelong memories.</h3>
+    
   </div> 
   <div class="row center-align">
-    <a href="{{ url_for('register') }}" class="btn">Join Us</a>    
+    <a href="{{ url_for('register') }}" class="btn btn-flat yellow accent-2 black-text">Join Us</a>    
   </div>
-  <div class="row center-align">
-    <p class="white-text">Already a Memnber?</p>
-    <a class="orange-text" href="{{ url_for('login') }}">Click Here</a>
-  </div> 
+  
 </div>
 {% endblock %}
 
@@ -46,7 +44,7 @@
       </div>
     </div>
       <div class="col s12 center-align">
-      <a class="btn btn-flat">Subscribe</a>
+      <a class="btn yellow accent-2 btn-flat">Subscribe</a>
     </div>
     
     </form>
