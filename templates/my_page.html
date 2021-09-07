@@ -19,53 +19,59 @@
 <h4>My Posts</h4>
    
 <div class="row">
-  {% for post in posts %}
-  {% if session.user|capitalize == post.created_by|capitalize %}
-  <div class="col s12 m4">
-     <div class="card">
-        <div class="card-image">
-           {% if post.image_url == "" or post.image_url is none %}
-           <img src="{{ url_for('static', filename='images/default-image.jpeg') }}"
-             width="232" height="240" alt="harbour bridge">
-           {% else %}
-           <img src="{{ post.image_url }}"
-           width="232" height="240"  alt="url image"> 
-           {% endif %}          
-        </div>
-        <div class="card-content">
-           <span class="card-title"><strong>{{ post.title }}</strong></span>           
-           <p><span><strong>Location:</strong> {{ post.location }}</span></p>
-           <p><span><strong>Date:</strong> {{ post.date }}</span></p>
-        </div>
-        <div class="card-action">
-          <span>Created by:<em> {{ post.created_by }}</em></span>
-           <!-- Action links -->
-           <div class="right">
-              <a class="black-text" href="{{ url_for('edit_post', blog_id=post._id) }}"><em>Edit</em></a>
-              <!-- Modal Trigger -->
-              <a class="black-text modal-trigger" href="#modal1"><em>Delete</em></a>                
-           </div>
-        </div>
-     </div>
-     <!-- Delete Modal -->
-     <div class="delete_modal">
-        <!-- Modal Structure -->
-        <div id="modal1" class="modal">
-           <div class="modal-content">
-              <h4>Are you sure you want to delete post?</h4>
-              <p>Deleted posts cannot be retrieved</p>
-           </div>
-           <div class="modal-footer">
-              <a href="{{ url_for('delete_post', blog_id=post._id) }}"
-                 class="modal-close waves-effect waves-green btn-flat">Yes</a>
-              <a href="{{ url_for('my_page', username=session['user']) }}"
-                 class="modal-close waves-effect waves-green btn-flat">No</a>
-           </div>
-        </div>
-     </div>
-  </div>
+   {% for post in posts %}
+   {% if session.user|capitalize == post.created_by|capitalize %}
+   <div class="col s12 m4">
+      <div class="card">
+         <div class="card-image">
+            {% if post.image_url == "" or post.image_url is none %}
+            <img src="{{ url_for('static', filename='images/default-image.jpeg') }}"
+               width="232" height="240" alt="harbour bridge">
+            {% else %}
+            <img src="{{ post.image_url }}"
+               width="232" height="240"  alt="url image"> 
+            {% endif %}          
+         </div>
+         <div class="card-content">
+            <span class="card-title"><strong>{{ post.title }}</strong></span>           
+            <p><span><strong>Location:</strong> {{ post.location }}</span></p>
+            <p><span><strong>Date:</strong> {{ post.date }}</span></p>
+            <span>Created by:<em> {{ post.created_by }}</em></span>
+         </div>
+         <div class="card-action">          
+           
+            <!-- Action links -->
+            <div class="right">
+               <a class="black-text" href="{{ url_for('add_comment', blog_id=post._id) }}"><i class="far fa-comment-alt"></i></a>
+               <a class="black-text" href="{{ url_for('edit_post', blog_id=post._id) }}"><i class="far fa-edit"></i></a>
+               <!-- Modal Trigger -->
+               <a class="black-text modal-trigger" href="#modal1"><i class="far fa-trash-alt"></i></a>                
+            </div>
+         </div>
+         
+          <!-- Delete Modal -->
+          <div class="delete_modal">
+            <!-- Modal Structure -->
+            <div id="modal1" class="modal">
+               <div class="modal-content">
+                  <h4>Are you sure you want to delete post?</h4>
+                  <p>Deleted posts cannot be retrieved</p>
+               </div>
+               <div class="modal-footer">
+                  <a href="{{ url_for('delete_post', blog_id=post._id) }}"
+                     class="modal-close waves-effect waves-green btn-flat">Yes</a>
+                  <a href="{{ url_for('my_page', username=session['user']) }}"
+                     class="modal-close waves-effect waves-green btn-flat">No</a>
+               </div>
+            </div>
+         </div>
+         
+        
+        
+      </div>
+   </div>
 
-  {% endif %}
+   {% endif %}
 {% endfor %}
 </div>
 

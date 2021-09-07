@@ -23,9 +23,10 @@
     <div class="nav-wrapper">
       <a href="{{ url_for('home') }}" class="brand-logo white-text darken-4">wild aussie</a>
       <a href="{{ url_for('home') }}" data-target="mobile-demo" class="sidenav-trigger black-text right"><i class="fas fa-bars"></i></a>
-      <ul class="right hide-on-med-and-down">
-        <li><a class="white-text" href="{{ url_for('home') }}">Home</a></li>       
-       
+      <ul class="right hide-on-med-and-down">        
+        <li><a class="white-text" href="{{ url_for('home') }}">Home</a></li>
+        <li><a class="white-text" href="#about">About</a></li>      
+
         {% if session.user %}
         <li><a class="white-text" href="{{ url_for('get_posts') }}">Blog</a></li>
           <li><a class="white-text" href="{{ url_for('my_page', username=session['user']) }}">My Page</a></li>
@@ -42,7 +43,9 @@
 <!--Mobile side Nav-->
   <ul class="sidenav" id="mobile-demo">
     <li><h4 class="brand-logo center-align red-text darken-4">wild aussie</h4></li>
-    <li><a class="black-text" href="{{ url_for('home') }}">Home</a></li>    
+    <li><a class="black-text" href="{{ url_for('home') }}">Home</a></li>
+    <li><a class="black-text" href="#About">About</a></li>    
+
     {% if session.user %}
     <li><a class="black-text" href="{{ url_for('get_posts') }}">Blog</a></li>
       <li><a class="black-text" href="{{ url_for('my_page', username=session['user']) }}">My Page</a></li>
