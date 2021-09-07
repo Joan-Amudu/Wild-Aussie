@@ -26,6 +26,7 @@
 <div class="row">
   {% for post in posts %}
   <div class="col s12 m3">
+    <a href="{{ url_for('show_post',blog_id=post._id) }}" aria-label="See more details {{ post.title }}"></a>
     <div class="card">
       <div class="card-image">
         {% if post.image_url == "" or post.image_url is none %}

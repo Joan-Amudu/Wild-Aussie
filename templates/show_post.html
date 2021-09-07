@@ -1,5 +1,22 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h3>more details</h3>
+<div class="img-container">
+    {% if post.image_url == "" or post.image_url is none %}
+        <img src="{{ url_for('static', filename='images/default-image.jpeg') }}"
+        alt="harbour bridge">
+        {% else %}
+        <img src="{{ post.image_url }}" alt="url image"> 
+        {% endif %}  
+</div>
+
+<div class="row">
+  
+     <p>coming soon </p>
+
+  
+
+</div>
+
+
 {% endblock %}

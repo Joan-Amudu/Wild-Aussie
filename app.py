@@ -140,9 +140,13 @@ def create_post():
     return render_template("create_post.html", posts=posts)
 
 
-@app.route("/show_post")
-def show_post():
-    return render_template("show_post.html")
+@app.route("/show_post/<blog_id>")
+def show_post(blog_id):
+    post = mongo.db.blog.find_one({"_id": ObjectId(blog_id)})
+
+    page_title = post["title"]
+
+    return render_template("show_post.html", post=post, page_title=page_title)   
 
 
 @app.route("/edit_post/<blog_id>", methods=["GET", "POST"])
