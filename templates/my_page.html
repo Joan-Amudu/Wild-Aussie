@@ -22,6 +22,7 @@
    {% for post in posts %}
    {% if session.user|capitalize == post.created_by|capitalize %}
    <div class="col s12 m4">
+      <a href="{{ url_for('show_post',blog_id=post._id) }}" aria-label="See more details {{ post.title }}">
       <div class="card">
          <div class="card-image">
             {% if post.image_url == "" or post.image_url is none %}

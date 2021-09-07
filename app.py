@@ -140,6 +140,11 @@ def create_post():
     return render_template("create_post.html", posts=posts)
 
 
+@app.route("/show_post")
+def show_post():
+    return render_template("show_post.html")
+
+
 @app.route("/edit_post/<blog_id>", methods=["GET", "POST"])
 def edit_post(blog_id):
     if request.method == "POST":
