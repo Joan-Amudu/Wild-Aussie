@@ -1,21 +1,43 @@
 {% extends "base.html" %}
 
-{% block content %}
-<div class="img-container">
+{% block banner %}
+<div class="parallax-container">
+<div class="parallax">
     {% if post.image_url == "" or post.image_url is none %}
         <img src="{{ url_for('static', filename='images/default-image.jpeg') }}"
         alt="harbour bridge">
         {% else %}
         <img src="{{ post.image_url }}" alt="url image"> 
-        {% endif %}  
+        {% endif %}
+    </div> 
+    <div class="col">
+        <h2 class="white-text center-align"><strong>{{ post.title }}</strong></h2>
+    </div> 
 </div>
+{% endblock %}
+
+{% block content %}
+
 
 <div class="row">
-  
-     <p>coming soon </p>
-
-  
-
+    <div class="col s12 m6">
+        <div class="col">
+            <h5>{{ post.title }}</h5>
+            <p><i class="fas fa-map-marker-alt"></i>: {{ post.location }}</p>
+            <p><i class="fas fa-calendar-alt"></i>: {{ post.date }}</p>
+            <p><i class="fas fa-route"></i>: {{ post.distance }}</p>
+            <p><i class="fas fa-hiking"></i>: {{ post.grade }}</p>
+            <p>{{ post.description }}</p>
+        </div>
+    </div>
+    <div class="col s12 m6">
+        <div class="col">
+                    
+        </div>
+    </div>
+</div>
+<div class="row">
+    <h4>Comments</h4>
 </div>
 
 

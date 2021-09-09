@@ -130,7 +130,10 @@ def create_post():
             "created_by": session["user"],
             "location": request.form.get("location"),
             "image_url": request.form.get("image_url"),
-            "date": request.form.get("date")
+            "date": request.form.get("date"),
+            "distance": request.form.get("distance"),
+            "grade": request.form.get("grade"),
+            "description": request.form.get("description")
         }
         mongo.db.blog.insert_one(task)
         flash("Post added successfully")
@@ -157,7 +160,10 @@ def edit_post(blog_id):
             "created_by": session["user"],
             "location": request.form.get("location"),
             "image_url": request.form.get("image_url"),
-            "date": request.form.get("date")
+            "date": request.form.get("date"),
+            "distance": request.form.get("distance"),
+            "grade": request.form.get("grade"),
+            "description": request.form.get("description")
         }
         mongo.db.blog.update({"_id": ObjectId(blog_id)}, edits)
         flash("Post updated successfully")

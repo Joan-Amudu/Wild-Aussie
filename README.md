@@ -193,11 +193,12 @@ You will need to install the requirements.txt using the following command the co
 ## Credits
 ### Images
 [angello](https://www.pexels.com/@angello-2372341)
+
+Unsplash
 [Danny Lau](https://unsplash.com/@kirk7501)
 [Victor](https://unsplash.com/@victor_g)
-
-hero Image
-[Valeriia Miller](https://www.pexels.com/photo/grayscale-photo-of-road-near-body-of-water-3798119/)
+[Martyna Bober](https://unsplash.com/@delmartyna)
+[Photoholgic](https://unsplash.com/@photoholgic)
   
 
 
