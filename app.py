@@ -149,7 +149,7 @@ def show_post(blog_id):
 
     page_title = post["title"]
 
-    return render_template("show_post.html", post=post, page_title=page_title)   
+    return render_template("show_post.html", post=post, page_title=page_title)
 
 
 @app.route("/edit_post/<blog_id>", methods=["GET", "POST"])
@@ -182,23 +182,21 @@ def delete_post(blog_id):
     return render_template("my_page.html")
 
 
-@app.route("/add_comment/<blog_id>", methods=["GET", "POST"])
-def add_comment(blog_id):
+@app.route("/create_comment/<blog_id>", methods=["GET", "POST"])
+def create_comment(blog_id):
     if request.method == "POST":
         comment = {
-            "title": request.form.get("title"),
-            "name": request.form.get("name"),
-            "description": request.form.get("description")
+            "first_name": request.form.get("first_name"),
+            "comment": request.form.get("comment")
         }
         mongo.db.blog.insert_one(comment)
-
-        flash("Post added successfully")
-        return redirect(url_for("get_posts"))
+        flash("comment added successfully")
+        return redirect(url_for("show_post"))
 
     post = mongo.db.blog.find_one({"_id": ObjectId(blog_id)})
 
-    posts = mongo.db.blog.find()
-    return render_template("add_comment.html", posts=posts, post=post)
+    posts = mongo.db.comments.find()
+    return render_template("show_post.html", posts=posts, post=post)
 
 
 if __name__ == "__main__":

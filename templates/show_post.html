@@ -39,6 +39,33 @@
 <div class="row">
     <h4>Comments</h4>
 </div>
+<div class="row comments">
+    <div class="col">
+        <h5>{{ post.first_name }}</h5>
+        <p>{{ post.comment }}</p>
+    </div>
+
+</div>
+<div class="row">
+    <form class="col s12">
+         <!-- name -->
+        <div class="row">
+            <div class="input-field col s12">
+              <input id="first_name" name="first_name" type="text" class="validate">
+              <label for="first_name">First Name</label>
+            </div>   
+        <!-- Comment -->
+        <div class="row">
+            <div class="input-field col s12">          
+               <textarea id="comment" name="comment" type="text" class="materialize-textarea validate"></textarea>
+               <label for="comment">Comment</label>
+            </div>
+        </div>
+      <a class="btn">Submit</a>
+
+    </form>
+</div>
+        
 
 
 {% endblock %}
