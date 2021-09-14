@@ -66,9 +66,8 @@
           {% if messages %}
             {% for message in messages %}
               <div class="row flashes">
-                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
-                <h4 class="center-align">{{ message }}</h4>
-                  
+                <span class="closebtn black-text" onclick="this.parentElement.style.display='none';">&times;</span>
+                <h4 class="center-align black-text">{{ message | capitalize }}</h4>                  
               </div>
             {% endfor%}
           {% endif %}
@@ -113,7 +112,7 @@
   <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 
     <script>
-      $("#copyright").text(new Date().getFullYear());
+      $("#copyright").text(new Date().getFullYear());    
   </script>
 
 {% block scripts %}

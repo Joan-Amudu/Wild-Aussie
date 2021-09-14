@@ -54,7 +54,7 @@ padding: 22px;
 /* The alert message box */
 .flashes {
   padding: 20px;
-  background-color: #f44336; /* Red */
+  background-color: #E3E8EE;  
   color: white;
   margin-bottom: 15px;
   z-index: 100;

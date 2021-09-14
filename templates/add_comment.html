@@ -1,45 +1,32 @@
 {% extends "base.html" %}
 
 {% block content %}
+<h5 class="center-align">Add Comment</h5>
 
 <div class="row">
-   <!--Contact Title-->
-   <div class="col s12">
-      <h3 class="center-align">Add Comment</h3>
-      <hr>
-   </div>
-   <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('add_comment', blog_id=post._id) }}">
-      <!-- Title -->
-      <div class="row">
-         <div class="input-field col s12">
-            <input id="title" name="title" type="text" minlength="5" maxlength="50"
-               value="{{ post.title }}" class="validate"></input>
-            <label for="title">Title</label>
-         </div>
-      </div>
-      <!-- Name -->
-      <div class="row">
-         <div class="input-field col s6">
-           <input id="name" name="name" type="text" class="validate">
-           <label for="name">Name</label>
-         </div>
-         <div class="input-field col s6">
-           <input id="description" name="description" type="text" class="validate">
-           <label for="description">Comment</label>
-         </div>
+   <form class="col s12" method="POST" action="{{ url_for('add_comment') }}">
+        <!-- name -->
+       <div class="row">
+           <div class="input-field col s12 m8 offset-m2">
+             <input id="first_name" name="first_name" type="text" class="validate">
+             <label for="first_name">First Name</label>
+           </div>   
+       <!-- Comment -->
+       <div class="row">
+           <div class="input-field col s12 m8 offset-m2">          
+              <textarea id="comment" name="comment" type="text" class="materialize-textarea validate"></textarea>
+              <label for="comment">Comment</label>
+           </div>
        </div>
-     
-      <!-- Save / Cancel -->
-      <div class="row">
-         <a class="btn-flat red-text right" href="{{ url_for('get_posts', username=session['user']) }}">
-         <strong>Cancel</strong>
-         </a>
-         <button class="btn-flat right" type="submit" name="action">
-         <strong>Save</strong>                    
-         </button>
-      </div>
+       <div class="row center-align">
+           <button class="btn transparent black-text" type="submit" name="action">
+           Submit                   
+           </button>
+        </div>
+
    </form>
- </div>
- 
+</div>
+
+
 
 {% endblock %}
