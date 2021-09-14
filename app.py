@@ -83,12 +83,6 @@ def login():
     return render_template("login.html", page_title="Log In")
 
 
-@app.before_request
-def set_session_timeout():
-    session.permanent = True
-    app.permanent_session_lifetime = timedelta(minutes=50)
-
-
 @app.route("/logout")
 def logout():
     # remove user from session cookie
