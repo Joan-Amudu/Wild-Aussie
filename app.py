@@ -1,4 +1,5 @@
 import os
+import json
 from flask import (
     Flask, flash, render_template,
     redirect, request, session, url_for)
@@ -22,7 +23,10 @@ mongo = PyMongo(app)
 @app.route("/")
 @app.route("/home")
 def home():
-    return render_template("home.html", page_title="Home")
+    wildaussie = []
+    with open("data/wildaussie.json", "r") as json_data:
+        wildaussie = json.load(json_data)
+    return render_template("home.html", page_title="Home", about=wildaussie)
 
 
 @app.route("/get_posts")
