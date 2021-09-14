@@ -88,22 +88,62 @@
       </main>
    
      <!-- footer -->
-     
-     <footer class="black">
-      <div class="row social container">        
+
+
+    <footer class="page-footer black">
+      <div class="container">
         <div class="row">
-          <h5 class="white-text center-align">Follow Us</h5>
-          <a class="white-text" href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
-          <a class="white-text" href="https://www.twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
-          <a class="white-text" href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>          
+          <div class="col l4 s12">
+            <h5 class="white-text">Newsletter</h5>
+            <form action="#">             
+              <div class="col">
+                 <div class="input-field ">
+                    <input id="first_name" type="text" name="first_name" class="validate">
+                    <label for="first_name">Name</label>
+                 </div>
+                 <div class="input-field ">
+                    <input id="email" type="email" class="validate">
+                    <label for="email">Email</label>
+                 </div>
+                 <div class="col">
+                  <a class="btn yellow accent-2 btn-flat">Subscribe</a>
+                </div>
+              </div>
+               
+           </form>
+          </div>
+          <div class="col l4 s12">
+            <h5 class="white-text">Follow Us</h5>
+            <ul>
+              <li><a class="white-text" href="https://www.facebook.com">Facebook</a></li>
+              <li><a class="white-text" href="https://www.twitter.com">Twitter</a></li>
+              <li><a class="white-text" href="https://www.instagram.com">Instagram</a></li>  
+            </ul>
+          </div>
+
+          <div class="col l4 s12">
+            <h5 class="white-text">Quick Links</h5>
+            <ul>
+              <li><a class="white-text" href="{{ url_for('home') }}">Home</a></li>
+              <li><a class="white-text" href="#">Privacy</a></li>
+              <li><a class="white-text" href="#">Accessability</a></li>  
+            </ul>
+          </div>
+        </div>
+        <div class="row">
+          <div class="container">       
+            <p class="white-text text-muted center-align">Copyright &copy; wild aussie
+              <span id="copyright"></span>
+              <a class="white-text" href="https://github.com/Joan-Amudu">
+                <i class="fab fa-github"></i>
+              </a>   
+            </p>
+            </div>
         </div>
       </div>
-      
-        <div class="row center-align copyright">
-          <p class="white-text text-muted">Copyright &copy; wild aussie <span id="copyright"></span></p>      
-        </div>
-     
+    
     </footer>
+        
         
 
     <script src="https://code.jquery.com/jquery-3.6.0.js"
