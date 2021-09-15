@@ -1,9 +1,8 @@
 import os
-import json
+import datetime
 from flask import (
     Flask, flash, render_template,
     redirect, request, session, url_for)
-from datetime import timedelta
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -21,18 +20,14 @@ mongo = PyMongo(app)
 
 
 @app.route("/")
-@app.route("/home")
 def home():
-    wildaussie = []
-    with open("data/wildaussie.json", "r") as json_data:
-        wildaussie = json.load(json_data)
-    return render_template("home.html", page_title="Home", about=wildaussie)
+    return render_template("pages/home.html", page_title="Home")
 
 
 @app.route("/get_posts")
 def get_posts():
     posts = list(mongo.db.blog.find().sort("title", 1))
-    return render_template("blog.html", posts=posts, page_title="Blog")
+    return render_template("pages/blog.html", posts=posts, page_title="Blog")
 
 
 @app.route("/search", methods=["GET", "POST"])
@@ -40,19 +35,19 @@ def search():
     query = request.form.get("query")
     posts = list(mongo.db.blog.find(
         {"$text": {"$search": query}}).sort("title", 1))
-    return render_template("blog.html", posts=posts, page_title="Blog")
+    return render_template("pages/blog.html", posts=posts, page_title="Blog")
 
 
 @app.route("/my_page/<username>", methods=["GET", "POST"])
 def my_page(username):
-    # grab the session user's username from database
-    username = mongo.db.users.find_one(
-        {"username": session["user"]})["username"]
+    if "user" not in session:
+        return redirect(url_for("login"))
+ 
     posts = mongo.db.blog.find()
 
-    if session["user"]:
-        return render_template("my_page.html", username=username, posts=posts)
-    return redirect(url_for("login"))
+    if "user" in session:
+        return render_template(
+            "pages/my_page.html", username=session["user"], posts=posts)
 
 
 @app.route("/login", methods=["GET", "POST"])
@@ -69,18 +64,18 @@ def login():
                     existing_user["password"], request.form.get("password")):
                 session["user"] = request.form.get("username").lower()
                 flash("Welcome, {}".format(request.form.get("username")))
-                return redirect(url_for("my_page", username=session["user"]))
+                return redirect(url_for("pages/my_page", username=session["user"]))
             else:
                 # invalid password match
                 flash("Incorrect Username and/or Password")
-                return redirect(url_for("login"))
+                return redirect(url_for("forms/login"))
 
         else:
             # username doesnt exist
             flash("Incorrect Username and/or Password")
-            return redirect(url_for("login"))
+            return redirect(url_for("forms/login"))
 
-    return render_template("login.html", page_title="Log In")
+    return render_template("forms/login.html", page_title="Log In")
 
 
 @app.route("/logout")
@@ -88,7 +83,7 @@ def logout():
     # remove user from session cookie
     flash("You have been logged out")
     session.pop("user")
-    return redirect(url_for("login"))
+    return redirect(url_for("forma/login"))
 
 
 @app.route("/register", methods=["GET", "POST"])
@@ -111,13 +106,13 @@ def register():
         # put the new user into 'session' cookie
         session["user"] = request.form.get("username").lower()
         flash("Registration Successful")
-        return redirect(url_for("my_page", username=session["user"]))
-    return render_template("register.html", page_title="Register")
+        return redirect(url_for("pages/my_page", username=session["user"]))
+    return render_template("forms/register.html", page_title="Register")
 
 
 @app.route("/contact")
 def contact():
-    return render_template("contact_us.html", page_title="Contact Us")
+    return render_template("forms/contact_us.html", page_title="Contact Us")
 
 
 @app.route("/create_post", methods=["GET", "POST"])
@@ -138,16 +133,16 @@ def create_post():
         return redirect(url_for("create_post"))
 
     posts = mongo.db.blog.find()
-    return render_template("create_post.html", posts=posts)
+    return render_template("pages/my_page.html", posts=posts)
 
 
 @app.route("/show_post/<blog_id>")
 def show_post(blog_id):
-    post = mongo.db.blog.find_one({"_id": ObjectId(blog_id)})
+    post = mongo.db.blog.find_one_or_404({"_id": ObjectId(blog_id)})
 
     page_title = post["title"]
 
-    return render_template("show_post.html", post=post, page_title=page_title)
+    return render_template("pages/show_post.html", post=post, page_title=page_title)
 
 
 @app.route("/edit_post/<blog_id>", methods=["GET", "POST"])
@@ -166,10 +161,10 @@ def edit_post(blog_id):
         mongo.db.blog.update({"_id": ObjectId(blog_id)}, edits)
         flash("Post updated successfully")
 
-    post = mongo.db.blog.find_one({"_id": ObjectId(blog_id)})
+    post = mongo.db.blog.find_one_or_404({"_id": ObjectId(blog_id)})
 
     posts = mongo.db.blog.find()
-    return render_template("edit_post.html", posts=posts, post=post)
+    return render_template("forms/edit_post.html", posts=posts, post=post)
 
 
 @app.route("/delete_post<blog_id>")
@@ -177,21 +172,22 @@ def delete_post(blog_id):
     mongo.db.blog.remove({"_id": ObjectId(blog_id)})
     flash("post deleted successfully")
 
-    return render_template("my_page.html")
+    return render_template("pages/my_page.html")
+
+#Error Handlers
+@app.errorhandler(404)
+def response_404(e):   
+    return render_template('custom/404.html', page_title="404")
 
 
-@app.route("/add_comment", methods=["GET", "POST"])
-def add_comment():
-    if request.method == "POST":
-        comnt = {
-            "first_name": request.form.get("first_name"),
-            "comment": request.form.get("comment")
-        }
-        mongo.db.comments.insert_one(comnt)
-        flash("comment added successfully")        
+@app.errorhandler(403)
+def response_403(e):    
+    return render_template('custom/403.html', page_title="403")
 
-    comment = mongo.db.comments.find()
-    return render_template("add_comment.html", comment=comment)
+
+@app.errorhandler(500)
+def response_500(e):  
+    return render_template('custom/500.html', page_title="500")
 
 
 if __name__ == "__main__":
