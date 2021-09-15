@@ -12,7 +12,8 @@
         <!-- Title -->
         <div class="row">
            <div class="input-field col s12">
-              <input id="title" name="title"  type="text" class="validate"></input>
+              <input id="title" name="title"  type="text" 
+              minlength="5" maxlength="20" class="validate"></input>
               <label for="title">Title</label>
            </div>
         </div>
@@ -27,7 +28,8 @@
         <!-- location -->                
         <div class="row">
            <div class="input-field col s12">
-              <input id="location" name="location"  type="text" class="validate"></input>
+              <input id="location" name="location"  type="text" 
+              minlength="5" maxlength="20" class="validate"></input>
               <label for="location">Location</label>
            </div>
         </div>
@@ -41,14 +43,16 @@
         <!-- description -->                
          <div class="row">
             <div class="input-field col s12">
-               <input id="description" name="description"  type="text" class="validate"></input>
+               <input id="description" name="description"  type="text" minlength="5" 
+               maxlength="80" class="validate"></input>
                <label for="description">Description</label>
             </div>
          </div>
                <!-- distance -->                
       <div class="row">
          <div class="input-field col s12">
-            <input id="distance" name="distance"  type="text" class="validate"></input>
+            <input id="distance" name="distance"  type="text" 
+            minlength="5" maxlength="5" class="validate"></input>
             <label for="distance">Distance</label>
          </div>
       </div>

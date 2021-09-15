@@ -12,7 +12,7 @@
      <!-- Title -->
      <div class="row">
         <div class="input-field col s12">
-           <input id="title" name="title" type="text" minlength="5" maxlength="50"
+           <input id="title" name="title" type="text" minlength="5" maxlength="20"
               value="{{ post.title }}" class="validate"></input>
            <label for="title">Title</label>
         </div>
@@ -28,28 +28,31 @@
      <!-- location -->                
      <div class="row">
         <div class="input-field col s12">
-           <input id="location" name="location"  type="text" class="validate"></input>
+           <input id="location" name="location"  type="text" value="{{ post.location }}"
+            minlength="5" maxlength="20" class="validate"></input>
            <label for="location">Location</label>
         </div>
      </div>
      <!-- due date picker -->
      <div class="row">
       <div class="input-field col s12">                  
-         <input id="date" name="date" type="text" class="datepicker validate" required>
+         <input id="date" name="date" type="text" value="{{ post.date }}" class="datepicker validate" required>
          <label for="date">Date</label>
       </div>
    </div>      
    <!-- description -->                
       <div class="row">
          <div class="input-field col s12">
-            <input id="description" name="description"  type="text" class="validate"></input>
+            <input id="description" name="description" type="text" value="{{ post.description }}" minlength="5" 
+            maxlength="80" class="validate"></input>
             <label for="description">Description</label>
          </div>
       </div>
       <!-- distance -->                
       <div class="row">
          <div class="input-field col s12">
-            <input id="distance" name="distance"  type="text" class="validate"></input>
+            <input id="distance" name="distance"  type="text" value="{{ post.distance }}"
+             minlength="5" maxlength="5" class="validate"></input>
             <label for="distance">Distance</label>
          </div>
       </div>
