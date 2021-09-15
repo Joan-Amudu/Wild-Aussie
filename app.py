@@ -42,7 +42,7 @@ def search():
 def my_page(username):
     if "user" not in session:
         return redirect(url_for("login"))
- 
+
     posts = mongo.db.blog.find()
 
     if "user" in session:
@@ -64,7 +64,8 @@ def login():
                     existing_user["password"], request.form.get("password")):
                 session["user"] = request.form.get("username").lower()
                 flash("Welcome, {}".format(request.form.get("username")))
-                return redirect(url_for("pages/my_page", username=session["user"]))
+                return redirect(url_for(
+                    "pages/my_page", username=session["user"]))
             else:
                 # invalid password match
                 flash("Incorrect Username and/or Password")
@@ -117,6 +118,9 @@ def contact():
 
 @app.route("/create_post", methods=["GET", "POST"])
 def create_post():
+    if "user" not in session:
+        return redirect(url_for("login"))
+
     if request.method == "POST":
         task = {
             "title": request.form.get("title"),
@@ -142,11 +146,15 @@ def show_post(blog_id):
 
     page_title = post["title"]
 
-    return render_template("pages/show_post.html", post=post, page_title=page_title)
+    return render_template(
+        "pages/show_post.html", post=post, page_title=page_title)
 
 
 @app.route("/edit_post/<blog_id>", methods=["GET", "POST"])
 def edit_post(blog_id):
+    if "user" not in session:
+        return redirect(url_for("login"))
+
     if request.method == "POST":
         edits = {
             "title": request.form.get("title"),
@@ -169,24 +177,28 @@ def edit_post(blog_id):
 
 @app.route("/delete_post<blog_id>")
 def delete_post(blog_id):
+    if "user" not in session:
+        return redirect(url_for("login"))
+
     mongo.db.blog.remove({"_id": ObjectId(blog_id)})
     flash("post deleted successfully")
 
     return render_template("pages/my_page.html")
 
-#Error Handlers
+
+# Error Handlers
 @app.errorhandler(404)
-def response_404(e):   
+def response_404(e):
     return render_template('custom/404.html', page_title="404")
 
 
 @app.errorhandler(403)
-def response_403(e):    
+def response_403(e):
     return render_template('custom/403.html', page_title="403")
 
 
 @app.errorhandler(500)
-def response_500(e):  
+def response_500(e):
     return render_template('custom/500.html', page_title="500")
 
 
