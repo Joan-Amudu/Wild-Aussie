@@ -30,10 +30,9 @@
     <div class="card">
       <div class="card-image">
         {% if post.image_url == "" or post.image_url is none %}
-        <img src="{{ url_for('static', filename='images/default-image.jpeg') }}"
-        width="232" height="240" alt="harbour bridge">
+        <img src="{{ url_for('static', filename='images/default-image.jpeg') }}" alt="harbour bridge">
         {% else %}
-        <img src="{{ post.image_url }}" width="232" height="240" alt="url image"> 
+        <img src="{{ post.image_url }}" alt="url image"> 
         {% endif %}       
       </div>
       <div class="card-content">

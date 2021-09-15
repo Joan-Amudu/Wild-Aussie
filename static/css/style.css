@@ -101,6 +101,12 @@ btn:hover{
   height: 200px;
 }
 
+.card-image img {
+  width: 232px;
+  height: 240px;
+  object-fit: cover;
+}
+
  /*-- Footer --*/
 
  .social {
