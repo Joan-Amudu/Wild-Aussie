@@ -1,147 +1,137 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!--Favicon -->
-    <link rel="icon" href="{{ url_for('static', filename='images/favicon.svg') }}"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" 
-    integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" type="text/css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" type="text/css">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
-    {% block styles %}
-    {% endblock %}
-    <title>Wild Aussie | {{ page_title }}</title>
-</head>
-<body>
-
-<header>
-  <!--Top Navbar-->
-  {% block header %}
-  <nav class="nav-extended black"> 
-    <div class="nav-wrapper">
-      <a href="{{ url_for('home') }}" class="brand-logo white-text darken-4">wild aussie</a>
-      <a href="{{ url_for('home') }}" data-target="mobile-demo" class="sidenav-trigger black-text right"><i class="fas fa-bars"></i></a>
-      <ul class="right hide-on-med-and-down">        
-        <li><a class="white-text" href="{{ url_for('home') }}">Home</a></li>             
-
-        {% if session.user %}
-        <li><a class="white-text" href="{{ url_for('get_posts') }}">Blog</a></li>
-          <li><a class="white-text" href="{{ url_for('my_page', username=session['user']) }}">My Page</a></li>
-          <li><a class="white-text" href="{{ url_for('logout') }}">Log Out</a></li>
-        {% else %}
-          <li><a class="white-text" href="{{ url_for('login') }}">Log In</a></li>     
-          <li><a class="white-text" href="{{ url_for('register') }}">Register</a></li>
-          <li><a class="white-text" href="{{ url_for('contact') }}">Contact Us</a></li>
-        {% endif %}
-
-      </ul>
-    </div>
-  </nav>
-<!--Mobile side Nav-->
-  <ul class="sidenav" id="mobile-demo">
-    <li><h4 class="brand-logo center-align red-text darken-4">wild aussie</h4></li>
-    <li><a class="black-text" href="{{ url_for('home') }}">Home</a></li>       
-
-    {% if session.user %}
-    <li><a class="black-text" href="{{ url_for('get_posts') }}">Blog</a></li>
-      <li><a class="black-text" href="{{ url_for('my_page', username=session['user']) }}">My Page</a></li>
-      <li><a class="black-text" href="{{ url_for('logout') }}">Log Out</a></li>
-    {% else %}
-      <li><a class="black-text" href="{{ url_for('login') }}">Log In</a></li>    
-      <li><a class="black-text" href="{{ url_for('register') }}">Register</a></li>
-      <li><a class="black-text" href="{{ url_for('contact') }}">Contact Us</a></li>
-    {% endif %}
-  </ul>
-          
-</header>
-{% endblock %}
-
+   <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <!--Meta Description-->
+      <meta name="description" content="A Trekking events platform.">
+      <!--Favicon -->
+      <link rel="icon" href="{{ url_for('static', filename='images/favicon.svg') }}"/>
+      <!--Font Awesome-->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" 
+         integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" type="text/css" />
+      <!--Materialize-->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" type="text/css">
+      <!--Custom CSS-->
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
+      {% block styles %}
+      {% endblock %}
+      <title>Wild Aussie | {{ page_title }}</title>
+   </head>
+   <body>
+      <header>
+         <!--Top Navbar-->
+         {% block header %}
+         <nav class="nav-extended black">
+            <div class="nav-wrapper">
+               <a href="{{ url_for('home') }}" class="brand-logo white-text darken-4">wild aussie</a>
+               <a href="{{ url_for('home') }}" data-target="mobile-demo" class="sidenav-trigger black-text right"><i class="fas fa-bars"></i></a>
+               <ul class="right hide-on-med-and-down">
+                  <li><a class="white-text" href="{{ url_for('home') }}">Home</a></li>
+                  {% if session.user %}
+                  <li><a class="white-text" href="{{ url_for('get_posts') }}">Blog</a></li>
+                  <li><a class="white-text" href="{{ url_for('my_page', username=session['user']) }}">My Page</a></li>
+                  <li><a class="white-text" href="{{ url_for('logout') }}">Log Out</a></li>
+                  {% else %}
+                  <li><a class="white-text" href="{{ url_for('login') }}">Log In</a></li>
+                  <li><a class="white-text" href="{{ url_for('register') }}">Register</a></li>
+                  <li><a class="white-text" href="{{ url_for('contact') }}">Contact Us</a></li>
+                  {% endif %}
+               </ul>
+            </div>
+         </nav>
+         <!--Mobile side Nav-->
+         <ul class="sidenav" id="mobile-demo">
+            <li>
+               <h4 class="brand-logo center-align red-text darken-4">wild aussie</h4>
+            </li>
+            <li><a class="black-text" href="{{ url_for('home') }}">Home</a></li>
+            {% if session.user %}
+            <li><a class="black-text" href="{{ url_for('get_posts') }}">Blog</a></li>
+            <li><a class="black-text" href="{{ url_for('my_page', username=session['user']) }}">My Page</a></li>
+            <li><a class="black-text" href="{{ url_for('logout') }}">Log Out</a></li>
+            {% else %}
+            <li><a class="black-text" href="{{ url_for('login') }}">Log In</a></li>
+            <li><a class="black-text" href="{{ url_for('register') }}">Register</a></li>
+            <li><a class="black-text" href="{{ url_for('contact') }}">Contact Us</a></li>
+            {% endif %}
+         </ul>
+      </header>
+      {% endblock %}
       <section>
-        <!-- Flash Messages -->
-        {% with messages = get_flashed_messages() %}
-          {% if messages %}
-            {% for message in messages %}
-              <div class="row flashes">
-                <span class="closebtn black-text" onclick="this.parentElement.style.display='none';">&times;</span>
-                <h4 class="center-align black-text">{{ message | capitalize }}</h4>                  
-              </div>
-            {% endfor%}
-          {% endif %}
-        {% endwith %}  
+         <!-- Flash Messages -->
+         {% with messages = get_flashed_messages() %}
+         {% if messages %}
+         {% for message in messages %}
+         <div class="row flashes">
+            <span class="closebtn black-text" onclick="this.parentElement.style.display='none';">&times;</span>
+            <h4 class="center-align black-text">{{ message | capitalize }}</h4>
+         </div>
+         {% endfor%}
+         {% endif %}
+         {% endwith %}  
       </section>
-
+      <!--page banner-->
       <section class="banner">
-        {% block banner %}
-        {% endblock %}
+         {% block banner %}
+         {% endblock %}
       </section>
-
       <!-- Content -->
       <main class="content">        
-        {% block content %}
-        {% endblock %}
+         {% block content %}
+         {% endblock %}
       </main>
-   
-     <!-- footer -->
-    <footer class="page-footer black">
-      <div class="container">
-        <div class="row">
-          <div class="col l4 s12">
-            <h5 class="white-text center-align">Acknowledgement to Country</h5>       
-               <p class="center-align">Wild Aussie acknowledges the Traditional Owners of the land on which we tread.
-                  We pay our respects to Elders past, present and future, and as an organisation with national reach, 
-                  we extend our respect to all Elders and Aboriginal and Torres Strait Islander peoples across Australia.
-                </p>
-           
-          </div>
-          <div class="col l4 s12">
-            <h5 class="white-text center-align">Follow Us</h5>
-            <ul class="center-align">
-              <li><a class="white-text" href="https://www.facebook.com">Facebook</a></li>
-              <li><a class="white-text" href="https://www.twitter.com">Twitter</a></li>
-              <li><a class="white-text" href="https://www.instagram.com">Instagram</a></li>  
-            
-            </ul>
-          </div>
-
-          <div class="col l4 s12">
-            <h5 class="white-text center-align">Quick Links</h5>
-            <ul class="center-align">
-              <li><a class="white-text" href="{{ url_for('home') }}">Home</a></li>
-              <li><a class="white-text" href="#">Privacy</a></li>
-              <li><a class="white-text" href="#">Accessability</a></li>  
-            </ul>
-          </div>
-        </div>
-        <div class="row">
-          <div class="container">       
-            <p class="white-text text-muted center-align">Copyright &copy; wild aussie
-              <span id="copyright"></span>
-              <a class="white-text" href="https://github.com/Joan-Amudu">
-                <i class="fab fa-github"></i>
-              </a>   
-            </p>
+      <!-- footer -->
+      <footer class="page-footer black">
+         <div class="container">
+            <div class="row">
+               <div class="col l4 s12">
+                  <h5 class="white-text center-align">Acknowledgement to Country</h5>
+                  <p class="center-align">Wild Aussie acknowledges the Traditional Owners of the land on which we tread.
+                     We pay our respects to Elders past, present and future, and as an organisation with national reach, 
+                     we extend our respect to all Elders and Aboriginal and Torres Strait Islander peoples across Australia.
+                  </p>
+               </div>
+               <div class="col l4 s12">
+                  <h5 class="white-text center-align">Follow Us</h5>
+                  <ul class="center-align">
+                     <li><a class="white-text" href="https://www.facebook.com">Facebook</a></li>
+                     <li><a class="white-text" href="https://www.twitter.com">Twitter</a></li>
+                     <li><a class="white-text" href="https://www.instagram.com">Instagram</a></li>
+                  </ul>
+               </div>
+               <div class="col l4 s12">
+                  <h5 class="white-text center-align">Quick Links</h5>
+                  <ul class="center-align">
+                     <li><a class="white-text" href="{{ url_for('home') }}">Home</a></li>
+                     <li><a class="white-text" href="#">Accessability</a></li>
+                     <li><a class="white-text" href="{{ url_for('contact') }}">Contact Us</a></li>
+                  </ul>
+               </div>
             </div>
-        </div>
-      </div>
-    
-    </footer>
-        
-        
-
-    <script src="https://code.jquery.com/jquery-3.6.0.js"
-    integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script> 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
-
-    <script>
-      $("#copyright").text(new Date().getFullYear());    
-  </script>
-
-{% block scripts %}
-{% endblock %}
-
-</body>
+            <div class="row">
+               <div class="container">
+                  <p class="white-text text-muted center-align">Copyright &copy; wild aussie
+                     <span id="copyright"></span>
+                     <a class="white-text" href="https://github.com/Joan-Amudu">
+                     <i class="fab fa-github"></i>
+                     </a>   
+                  </p>
+               </div>
+            </div>
+         </div>
+      </footer>
+      <!--jquery-->      
+      <script src="https://code.jquery.com/jquery-3.6.0.js"
+         integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script> 
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+      {% block scripts %}
+      <!--Custom JS-->
+      <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+      <script>
+         $("#copyright").text(new Date().getFullYear());    
+      </script>
+      {% endblock %}
+   </body>
 </html>
-
