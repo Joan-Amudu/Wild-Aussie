@@ -53,8 +53,8 @@ def my_page(username):
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
-        # email address will be used as username
-        # check if email already exists in our database
+       
+        # check if username already exists in our database
         existing_user = mongo.db.users.find_one(
             {"username": request.form.get("username").lower()})
 
@@ -193,20 +193,22 @@ def delete_post(blog_id):
 def password_reset():
     if request.method == "POST":
         # check if email already exists in our database
-        existing_user = mongo.db.users.find_one(
+        user_exists = mongo.db.users.find_one(
             {"email": request.form.get("email").lower()})
 
-        if existing_user:
+        if user_exists:
             new_password = {
                 "password": generate_password_hash(request.form.get("password"))
             }
-        mongo.db.users.update_one(new_password)
+            mongo.db.users.update_one(new_password)
 
-        # put the new user into 'session' cookie
-        session["user"] = request.form.get("username").lower()
-        flash("Registration Successful")
+        else:
+            # invalid email match
+            flash("Sorry! Email not Found")
+            return redirect(url_for("login"))
+    
         return redirect(url_for("my_page", username=session["user"]))
-    return render_template("register.html", page_title="Register")
+    return render_template("password_reset.html", page_title="Password Reset")
 
 
 # Error Handlers
