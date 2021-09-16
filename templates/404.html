@@ -2,15 +2,16 @@
 {% block title %}Page Not Found{% endblock %}
 {% block content %}
 <div class="row">
-  <h1 class="center-align">Page Not Found</h1>
-  <div class="col 12 m6">
+   <h1 class="center-align">Page Not Found</h1>
+   <div class="col 12 m6">
       <h4>Oops!</h4>
-    <h5>What you were looking for is just not there.
-    <h5><a href="{{ url_for('home') }}">Go Somewhere Nice</a>
-  </div>
-  <div class="col s12 m6">
-    <img src="{{ url_for('static', filename='images/favicon.svg')}}" width="=540" height="400" alt="">
-  </div>
+      <h5>
+      What you were looking for is just not there.
+      <h5>
+      <a href="{{ url_for('home') }}">Go Somewhere Nice</a>
+   </div>
+   <div class="col s12 m6">
+      <img src="{{ url_for('static', filename='images/favicon.svg')}}" width="=540" height="400" alt="SVG image of Kangaroo">
+   </div>
 </div>
- 
 {% endblock %}
