@@ -21,13 +21,13 @@ mongo = PyMongo(app)
 
 @app.route("/")
 def home():
-    return render_template("pages/home.html", page_title="Home")
+    return render_template("home.html", page_title="Home")
 
 
 @app.route("/get_posts")
 def get_posts():
     posts = list(mongo.db.blog.find().sort("title", 1))
-    return render_template("pages/blog.html", posts=posts, page_title="Blog")
+    return render_template("blog.html", posts=posts, page_title="Blog")
 
 
 @app.route("/search", methods=["GET", "POST"])
@@ -35,7 +35,7 @@ def search():
     query = request.form.get("query")
     posts = list(mongo.db.blog.find(
         {"$text": {"$search": query}}).sort("title", 1))
-    return render_template("pages/blog.html", posts=posts, page_title="Blog")
+    return render_template("blog.html", posts=posts, page_title="Blog")
 
 
 @app.route("/my_page/<username>", methods=["GET", "POST"])
@@ -47,7 +47,7 @@ def my_page(username):
 
     if "user" in session:
         return render_template(
-            "pages/my_page.html", username=session["user"], posts=posts)
+            "my_page.html", username=session["user"], posts=posts)
 
 
 @app.route("/login", methods=["GET", "POST"])
@@ -65,18 +65,18 @@ def login():
                 session["user"] = request.form.get("username").lower()
                 flash("Welcome, {}".format(request.form.get("username")))
                 return redirect(url_for(
-                    "pages/my_page", username=session["user"]))
+                    "my_page", username=session["user"]))
             else:
                 # invalid password match
                 flash("Incorrect Username and/or Password")
-                return redirect(url_for("forms/login"))
+                return redirect(url_for("login"))
 
         else:
             # username doesnt exist
             flash("Incorrect Username and/or Password")
-            return redirect(url_for("forms/login"))
+            return redirect(url_for("login"))
 
-    return render_template("forms/login.html", page_title="Log In")
+    return render_template("login.html", page_title="Log In")
 
 
 @app.route("/logout")
@@ -84,7 +84,7 @@ def logout():
     # remove user from session cookie
     flash("You have been logged out")
     session.pop("user")
-    return redirect(url_for("forma/login"))
+    return redirect(url_for("login"))
 
 
 @app.route("/register", methods=["GET", "POST"])
@@ -99,6 +99,7 @@ def register():
             return redirect(url_for("register"))
 
         register = {
+            "email": request.form.get("email").lower(),
             "username": request.form.get("username").lower(),
             "password": generate_password_hash(request.form.get("password"))
         }
@@ -107,13 +108,13 @@ def register():
         # put the new user into 'session' cookie
         session["user"] = request.form.get("username").lower()
         flash("Registration Successful")
-        return redirect(url_for("pages/my_page", username=session["user"]))
-    return render_template("forms/register.html", page_title="Register")
+        return redirect(url_for("my_page", username=session["user"]))
+    return render_template("register.html", page_title="Register")
 
 
 @app.route("/contact")
 def contact():
-    return render_template("forms/contact_us.html", page_title="Contact Us")
+    return render_template("contact_us.html", page_title="Contact Us")
 
 
 @app.route("/create_post", methods=["GET", "POST"])
@@ -127,17 +128,18 @@ def create_post():
             "created_by": session["user"],
             "location": request.form.get("location"),
             "image_url": request.form.get("image_url"),
-            "date": request.form.get("date"),
+            "date_picker": request.form.get("date_picker"),
             "distance": request.form.get("distance"),
             "grade": request.form.get("grade"),
-            "description": request.form.get("description")
+            "description": request.form.get("description"),
+            "date": datetime.datetime.now()
         }
         mongo.db.blog.insert_one(task)
         flash("Post added successfully")
         return redirect(url_for("create_post"))
 
     posts = mongo.db.blog.find()
-    return render_template("pages/my_page.html", posts=posts)
+    return render_template("my_page.html", posts=posts)
 
 
 @app.route("/show_post/<blog_id>")
@@ -147,7 +149,7 @@ def show_post(blog_id):
     page_title = post["title"]
 
     return render_template(
-        "pages/show_post.html", post=post, page_title=page_title)
+        "show_post.html", post=post, page_title=page_title)
 
 
 @app.route("/edit_post/<blog_id>", methods=["GET", "POST"])
@@ -161,10 +163,11 @@ def edit_post(blog_id):
             "created_by": session["user"],
             "location": request.form.get("location"),
             "image_url": request.form.get("image_url"),
-            "date": request.form.get("date"),
+            "date_picker": request.form.get("date_picker"),
             "distance": request.form.get("distance"),
             "grade": request.form.get("grade"),
-            "description": request.form.get("description")
+            "description": request.form.get("description"),
+            "dates": datetime.datetime.now()
         }
         mongo.db.blog.update({"_id": ObjectId(blog_id)}, edits)
         flash("Post updated successfully")
@@ -172,7 +175,7 @@ def edit_post(blog_id):
     post = mongo.db.blog.find_one_or_404({"_id": ObjectId(blog_id)})
 
     posts = mongo.db.blog.find()
-    return render_template("forms/edit_post.html", posts=posts, post=post)
+    return render_template("edit_post.html", posts=posts, post=post)
 
 
 @app.route("/delete_post<blog_id>")
@@ -183,23 +186,43 @@ def delete_post(blog_id):
     mongo.db.blog.remove({"_id": ObjectId(blog_id)})
     flash("post deleted successfully")
 
-    return render_template("pages/my_page.html")
+    return render_template("my_page.html")
+
+
+@app.route("/password_reset", methods=["GET", "POST"])
+def password_reset():
+    if request.method == "POST":
+        # check if email already exists in our database
+        existing_user = mongo.db.users.find_one(
+            {"email": request.form.get("email").lower()})
+
+        if existing_user:
+            new_password = {
+                "password": generate_password_hash(request.form.get("password"))
+            }
+        mongo.db.users.update_one(new_password)
+
+        # put the new user into 'session' cookie
+        session["user"] = request.form.get("username").lower()
+        flash("Registration Successful")
+        return redirect(url_for("my_page", username=session["user"]))
+    return render_template("register.html", page_title="Register")
 
 
 # Error Handlers
 @app.errorhandler(404)
 def response_404(e):
-    return render_template('custom/404.html', page_title="404")
+    return render_template('404.html', page_title="404")
 
 
 @app.errorhandler(403)
 def response_403(e):
-    return render_template('custom/403.html', page_title="403")
+    return render_template('403.html', page_title="403")
 
 
 @app.errorhandler(500)
 def response_500(e):
-    return render_template('custom/500.html', page_title="500")
+    return render_template('500.html', page_title="500")
 
 
 if __name__ == "__main__":
