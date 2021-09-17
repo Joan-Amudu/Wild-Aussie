@@ -182,6 +182,7 @@ def edit_post(blog_id):
         }
         mongo.db.blog.update({"_id": ObjectId(blog_id)}, edits)
         flash("Post updated successfully")
+        return redirect(url_for("my_page", username=session["user"]))
 
     post = mongo.db.blog.find_one_or_404({"_id": ObjectId(blog_id)})
 
