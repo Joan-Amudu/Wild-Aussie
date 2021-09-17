@@ -1,47 +1,45 @@
 {% extends "base.html" %}
-
+{% block banner %}
+   <!-- Login Title -->
+   <div class="col s12">
+      <h3 class="center-align">{{ page_title }}</h3>
+   </div>
+{% endblock %}
 {% block content %}
-
 <div class="row">
-    <!-- Login Title -->
-    <div class="col s12">
-       <h3 class="center-align">{{ page_title }}</h3>
-    </div>
-    <!-- Login Form -->
-    <div class="row">
-       <form class="col s12 m6 offset-m3" method="POST" action="{{ url_for('login') }}">
-          <div>
-             <!-- Username -->
-             <div class="row">
-                <div class="input-field col s12">
-                   <input id="username" name="username" type="text" minlength="5" maxlength="20"
-                      class="validate" pattern="^[A-Za-z0-9]{5, 20}$" required>
-                   <label for="username">Username</label>
-                </div>
-             </div>
-             <!-- Password -->
-             <div class="row">
+
+   <!-- Login Form -->
+   <div class="row">
+      <form class="col s12 m6 offset-m3" method="POST" action="{{ url_for('login') }}">
+         <div>
+            <!-- Username -->
+            <div class="row">
                <div class="input-field col s12">
-                  <input id="password" name="password" type="password"
-                   minlength="5" maxlength="20" pattern="^[A-Za-z0-9]{5, 20}$" class="validate" required>
-                   <label for="password">Password</label>                                 
+                  <input id="username" name="username" type="text" minlength="5" maxlength="20"
+                     class="validate" pattern="^[A-Za-z0-9]{5, 20}$" required>
+                  <label for="username">Username</label>
                </div>
             </div>
-             <!-- Register -->
-             <div class="row center-align">
-                <button class="btn transparent black-text" type="submit" name="action">
-                Login    
-                </button>
-             </div>
-             <div class="row center-align">
-                <p>Not a Member?</p>
-                <a href="{{ url_for('register') }}">Register Here</a>
-             </div>
-          </div>          
-       </form>       
-    </div>   
+            <!-- Password -->
+            <div class="row">
+               <div class="input-field col s12">
+                  <input id="password" name="password" type="password"
+                     minlength="5" maxlength="20" pattern="^[A-Za-z0-9]{5, 20}$" class="validate" required>
+                  <label for="password">Password</label>                                 
+               </div>
+            </div>
+            <!-- Register -->
+            <div class="row center-align">
+               <button class="btn transparent black-text" type="submit" name="action">
+               Login    
+               </button>
+            </div>
+            <div class="row center-align">
+               <p>Not a Member?</p>
+               <a href="{{ url_for('register') }}">Register Here</a>
+            </div>
+         </div>
+      </form>
+   </div>
 </div>
 {% endblock %}
-
-
-

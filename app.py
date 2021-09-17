@@ -21,7 +21,8 @@ mongo = PyMongo(app)
 
 @app.route("/")
 def home():
-    return render_template("home.html", page_title="Home")
+    posts = list(mongo.db.blog.find().sort("title", 1))
+    return render_template("home.html", posts=posts, page_title="Home")
 
 
 @app.route("/get_posts")
@@ -143,7 +144,7 @@ def create_post():
             "distance": request.form.get("distance"),
             "grade": request.form.get("grade"),
             "description": request.form.get("description"),
-            "date": datetime.datetime.now()
+            "date": datetime.datetime.now().strftime("%d %B, %Y")
         }
         mongo.db.blog.insert_one(task)
         flash("Post added successfully")
@@ -178,7 +179,7 @@ def edit_post(blog_id):
             "distance": request.form.get("distance"),
             "grade": request.form.get("grade"),
             "description": request.form.get("description"),
-            "dates": datetime.datetime.now()
+            "date": datetime.datetime.now().strftime("%d %B, %Y")
         }
         mongo.db.blog.update({"_id": ObjectId(blog_id)}, edits)
         flash("Post updated successfully")

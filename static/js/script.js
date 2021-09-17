@@ -23,3 +23,7 @@ $(document).ready(function(){
 
 
   });
+
+  setTimeout(function() {
+    $('#flashmessage').fadeOut('fast');
+}, 30000);
