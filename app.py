@@ -53,7 +53,7 @@ def my_page(username):
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
-       
+
         # check if username already exists in our database
         existing_user = mongo.db.users.find_one(
             {"username": request.form.get("username").lower()})
@@ -112,9 +112,20 @@ def register():
     return render_template("register.html", page_title="Register")
 
 
-@app.route("/contact")
+@app.route("/contact", methods=["GET", "POST"])
 def contact():
-    return render_template("contact_us.html", page_title="Contact Us")
+    if request.method == "POST":
+        contact = {
+            "first_name": request.form.get("first_name"),
+            "last_name": request.form.get("last_name"),
+            "email": request.form.get("email"),
+            "message": request.form.get("message")
+        }
+        mongo.db.contacts.insert_one(contact)
+        flash("Message Sent Successfully!")
+
+    return render_template(
+        "contact_us.html", page_title="Contact Us")
 
 
 @app.route("/create_post", methods=["GET", "POST"])
@@ -187,28 +198,6 @@ def delete_post(blog_id):
     flash("post deleted successfully")
 
     return render_template("my_page.html")
-
-
-@app.route("/password_reset", methods=["GET", "POST"])
-def password_reset():
-    if request.method == "POST":
-        # check if email already exists in our database
-        user_exists = mongo.db.users.find_one(
-            {"email": request.form.get("email").lower()})
-
-        if user_exists:
-            new_password = {
-                "password": generate_password_hash(request.form.get("password"))
-            }
-            mongo.db.users.update_one(new_password)
-
-        else:
-            # invalid email match
-            flash("Sorry! Email not Found")
-            return redirect(url_for("login"))
-    
-        return redirect(url_for("my_page", username=session["user"]))
-    return render_template("password_reset.html", page_title="Password Reset")
 
 
 # Error Handlers

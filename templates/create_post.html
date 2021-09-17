@@ -1,81 +1,79 @@
 {% extends "base.html" %}
-
 {% block content %}
-
 <div class="row">
-  <!--Contact Title-->
-  <div class="col s12">
-     <h3 class="center-align">Create Event</h3>
-  </div>
-  <form class="col s12 m6 offset-m3" method="POST" action="{{ url_for('create_post') }}">
-     <div>
-        <!-- Title -->
-        <div class="row">
-           <div class="input-field col s12">
-              <input id="title" name="title"  type="text" 
-              minlength="5" maxlength="20" class="validate"></input>
-              <label for="title">Title</label>
-           </div>
-        </div>
-        <!-- Image -->
-        <div class="row">
-           <div class="input-field col s12">                    
-              <input id="image_url" name="image_url" type="url" class="validate"></input>
-              <label for="image_url">Image</label>
-              <span>Please add url for image</span>
-           </div>
-        </div>
-        <!-- location -->                
-        <div class="row">
-           <div class="input-field col s12">
-              <input id="location" name="location"  type="text" 
-              minlength="5" maxlength="20" class="validate"></input>
-              <label for="location">Location</label>
-           </div>
-        </div>
-        <!-- due date picker -->
-        <div class="row">
-           <div class="input-field col s12">                  
-              <input id="date_picker" name="date_picker" type="text" class="datepicker validate" required>
-              <label for="date_picker">Date</label>
-           </div>
-        </div>
-        <!-- description -->                
-         <div class="row">
-            <div class="input-field col s12">
-               <input id="description" name="description"  type="text" minlength="5" 
-               maxlength="80" class="validate"></input>
-               <label for="description">Description</label>
-            </div>
-         </div>
-               <!-- distance -->                
+<!--Contact Title-->
+<div class="col s12">
+   <h3 class="center-align">Create Event</h3>
+</div>
+<form class="col s12 m6 offset-m3" method="POST" action="{{ url_for('create_post') }}">
+   <div>
+      <!-- Title -->
       <div class="row">
          <div class="input-field col s12">
-            <input id="distance" name="distance"  type="text" 
-            minlength="5" maxlength="5" class="validate"></input>
+            <input id="title" name="title"  type="text" aria-describedby="first_name"
+               minlength="5" maxlength="20" class="validate"></input>
+            <label for="title">Title</label>
+         </div>
+      </div>
+      <!-- Image -->
+      <div class="row">
+         <div class="input-field col s12">                    
+            <input id="image_url" name="image_url" type="url" 
+               aria-describedby="image_url" class="validate"></input>
+            <label for="image_url">Image</label>
+            <span>Please add url for image</span>
+         </div>
+      </div>
+      <!-- location -->                
+      <div class="row">
+         <div class="input-field col s12">
+            <input id="location" name="location" type="text" aria-describedby="location"
+               minlength="5" maxlength="20" class="validate"></input>
+            <label for="location">Location</label>
+         </div>
+      </div>
+      <!-- due date picker -->
+      <div class="row">
+         <div class="input-field col s12">                  
+            <input id="date_picker" name="date_picker" type="text" 
+               aria-describedby="date_picker" class="datepicker validate" required>
+            <label for="date_picker">Date</label>
+         </div>
+      </div>
+      <!-- description -->                
+      <div class="row">
+         <div class="input-field col s12">
+            <input id="description" name="description" type="text" aria-describedby="description" 
+               minlength="5" maxlength="80" class="validate"></input>
+            <label for="description">Description</label>
+         </div>
+      </div>
+      <!-- distance -->                
+      <div class="row">
+         <div class="input-field col s12">
+            <input id="distance" name="distance"  type="text" aria-describedby="distance" 
+               minlength="5" maxlength="5" class="validate"></input>
             <label for="distance">Distance</label>
          </div>
       </div>
-         <!-- grade -->   
-      <div class="row">           
+      <!-- grade -->   
+      <div class="row">
          <div class="input-field col s12">
             <select id="grade" name="grade" type="text" class="validate" required>
-              <option value="" disabled selected>Select Option</option>
-              <option value="Easy">Easy</option>
-              <option value="Medium">Medium</option>
-              <option value="Hard">Hard</option>
-              <option value="None">N/A</option>
+               <option value="" disabled selected>Select Option</option>
+               <option value="Easy">Easy</option>
+               <option value="Medium">Medium</option>
+               <option value="Hard">Hard</option>
+               <option value="None">N/A</option>
             </select>
             <label>Grade</label>
-          </div>
-         </div>  
-        <div class="row center-align">
-           <button class="btn transparent black-text" type="submit" name="action">
-           Add Event                    
-           </button>
-        </div>
-  </form>                
+         </div>
+      </div>
+      <div class="row center-align">
+         <button class="btn transparent black-text" type="submit" name="action">
+         Add Event                    
+         </button>
+      </div>
+</form>
 </div>
-
-
 {% endblock %}

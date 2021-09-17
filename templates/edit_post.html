@@ -1,85 +1,83 @@
 {% extends "base.html" %}
-
 {% block content %}
-              
 <div class="row">
-  <!--Contact Title-->
-  <div class="col s12">
-     <h3 class="center-align">Edit Post</h3>
-     <hr>
-  </div>
-  <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('edit_post', blog_id=post._id) }}">
-     <!-- Title -->
-     <div class="row">
-        <div class="input-field col s12">
-           <input id="title" name="title" type="text" minlength="5" maxlength="20"
-              value="{{ post.title }}" class="validate"></input>
-           <label for="title">Title</label>
-        </div>
-     </div>
-     <!-- Image -->
-     <div class="row">
-        <div class="input-field col s12">
-           <input id="image_url" name="image_url" type="url" value="{{ post.image_url }}" class="validate"></input>
-           <label for="image_url">Image</label>
-           <span>Please add url for image</span>
-        </div>
-     </div>
-     <!-- location -->                
-     <div class="row">
-        <div class="input-field col s12">
-           <input id="location" name="location"  type="text" value="{{ post.location }}"
-            minlength="5" maxlength="20" class="validate"></input>
-           <label for="location">Location</label>
-        </div>
-     </div>
-     <!-- due date picker -->
-     <div class="row">
-      <div class="input-field col s12">                  
-         <input id="date_picker" name="date_picker" type="text" value="{{ post.date_picker }}" class="datepicker validate" required>
-         <label for="date_picker">Date</label>
-      </div>
-   </div>      
-   <!-- description -->                
+   <!--Contact Title-->
+   <div class="col s12">
+      <h3 class="center-align">Edit Post</h3>
+      <hr>
+   </div>
+   <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('edit_post', blog_id=post._id) }}">
+      <!-- Title -->
       <div class="row">
          <div class="input-field col s12">
-            <input id="description" name="description" type="text" value="{{ post.description }}" minlength="5" 
-            maxlength="80" class="validate"></input>
+            <input id="title" name="title" type="text" aria-describedby="title" minlength="5" maxlength="20"
+               value="{{ post.title }}" class="validate"></input>
+            <label for="title">Title</label>
+         </div>
+      </div>
+      <!-- Image -->
+      <div class="row">
+         <div class="input-field col s12">
+            <input id="image_url" name="image_url" type="url" aria-describedby="image_url"
+               value="{{ post.image_url }}" class="validate"></input>
+            <label for="image_url">Image</label>
+            <span>Please add url for image</span>
+         </div>
+      </div>
+      <!-- location -->                
+      <div class="row">
+         <div class="input-field col s12">
+            <input id="location" name="location"  type="text" aria-describedby="location"
+               value="{{ post.location }}" minlength="5" maxlength="20" class="validate"></input>
+            <label for="location">Location</label>
+         </div>
+      </div>
+      <!-- due date picker -->
+      <div class="row">
+         <div class="input-field col s12">                  
+            <input id="date_picker" name="date_picker" type="text" aria-describedby="date_picker"
+               value="{{ post.date_picker }}" class="datepicker validate" required>
+            <label for="date_picker">Date</label>
+         </div>
+      </div>
+      <!-- description -->                
+      <div class="row">
+         <div class="input-field col s12">
+            <input id="description" name="description" type="text" aria-describedby="description"
+               value="{{ post.description }}" minlength="5" maxlength="80" class="validate"></input>
             <label for="description">Description</label>
          </div>
       </div>
       <!-- distance -->                
       <div class="row">
          <div class="input-field col s12">
-            <input id="distance" name="distance"  type="text" value="{{ post.distance }}"
-             minlength="5" maxlength="5" class="validate"></input>
+            <input id="distance" name="distance"  type="text" aria-describedby="distance"
+               value="{{ post.distance }}" minlength="5" maxlength="5" class="validate"></input>
             <label for="distance">Distance</label>
          </div>
       </div>
       <!-- grade -->   
-      <div class="row">           
-      <div class="input-field col s12">
-         <select id="grade" name="grade" type="text" class="validate" required>
-           <option value="" disabled selected>Select Option</option>
-           <option value="Easy">Easy</option>
-           <option value="Medium">Medium</option>
-           <option value="Hard">Hard</option>
-           <option value="None">N/A</option>
-         </select>
-         <label>Grade</label>
-       </div>
-      </div>  
-     
-     <!-- Save / Cancel -->
-     <div class="row">
-        <a class="btn-flat red-text right" href="{{ url_for('my_page', username=session['user']) }}">
-        <strong>Cancel</strong>
-        </a>
-        <button class="btn-flat right" type="submit" name="action">
-        <strong>Save</strong>                    
-        </button>
-     </div>
-  </form>
+      <div class="row">
+         <div class="input-field col s12">
+            <select id="grade" name="grade" type="text" class="validate" required>
+               <option value="" disabled selected>Select Option</option>
+               <option value="Easy">Easy</option>
+               <option value="Medium">Medium</option>
+               <option value="Hard">Hard</option>
+               <option value="None">N/A</option>
+            </select>
+            <label>Grade</label>
+         </div>
+      </div>
+      <!-- Save / Cancel -->
+      <div class="row">
+         <a class="btn-flat red-text right" href="{{ url_for('my_page', username=session['user']) }}">
+         <strong>Cancel</strong>
+         </a>
+         <button class="btn-flat right" type="submit" name="action">
+         <strong>Save</strong>                    
+         </button>
+      </div>
+   </form>
 </div>
-
 {% endblock %}

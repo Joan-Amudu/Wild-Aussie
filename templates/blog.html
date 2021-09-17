@@ -1,80 +1,74 @@
 {% extends "base.html" %}
-
 {% block content %}
-
 <h3>All Meet Ups</h3>
-
 <div class="row card-panel">
-  <form action="{{ url_for('search') }}" method="post" class="col s12">
-    <div class="row valign-wrapper center-align">
-      <div class="input-field col s12 m8">
-        <i class="fas fa-search prefix"></i>
-          <input type="text" name="query" id="query" minlength="3" class="validate" required>
-          <label for="query">Search</label>        
+   <form action="{{ url_for('search') }}" method="post" class="col s12">
+      <div class="row valign-wrapper center-align">
+         <div class="input-field col s12 m8">
+            <i class="fas fa-search prefix"></i>
+            <input type="text" name="query" id="query" minlength="3" class="validate" required>
+            <label for="query">Search</label>        
+         </div>
+         <div class="col s12 m4">
+            <a href="{{ url_for('get_posts') }}" class="red-text btn-flat">Reset</a>
+            <button type="submit" class="btn-flat">
+            <i class="fas fa-search left"></i>Search
+            </button>
+         </div>
       </div>
-      <div class="col s12 m4">
-        <a href="{{ url_for('get_posts') }}" class="red-text btn-flat">Reset</a>
-        <button type="submit" class="btn-flat">
-          <i class="fas fa-search left"></i>Search
-        </button>
-      </div>
-    </div>
-  </form>
+   </form>
 </div>
-
 {% if posts|length > 0 %}
 <div class="row">
-  {% for post in posts %}
-  <div class="col s12 m3">
-    <a href="{{ url_for('show_post', blog_id=post._id) }}" aria-label="See more details {{ post.title }}">
-    <div class="card">
-      <div class="card-image">
-        {% if post.image_url == "" or post.image_url is none %}
-        <img src="{{ url_for('static', filename='images/default-image.jpeg') }}" alt="harbour bridge">
-        {% else %}
-        <img src="{{ post.image_url }}" alt="url image"> 
-        {% endif %}       
+   {% for post in posts %}
+   <div class="col s12 m3">
+      <a href="{{ url_for('show_post', blog_id=post._id) }}">
+         <div class="card">
+            <div class="card-image">
+               {% if post.image_url == "" or post.image_url is none %}
+               <img src="{{ url_for('static', filename='images/default-image.jpeg') }}" alt="harbour bridge">
+               {% else %}
+               <img src="{{ post.image_url }}" alt="{{post.title}}"> 
+               {% endif %}       
+            </div>
+            <div class="card-content">
+               <span class="card-title"><strong>{{ post.title }}</strong></span>
+               <p><span><strong>Location:</strong> {{ post.location }}</span></p>
+               <p><span><strong>Date:</strong> {{ post.date }}</span></p>
+            </div>
+            <div class="card-action">
+               <span>Created by:<em> {{ post.created_by | capitalize }}</em></span>
+               <!-- Action links -->
+               {% if session.user|lower == post.created_by|lower %}
+               <div class="right">
+      <a class="black-text" href="{{ url_for('edit_post', blog_id=post._id) }}"><i class="far fa-edit"></i></a>
+      <!-- Modal Trigger -->
+      <a class="black-text modal-trigger" href="#modal1"><i class="far fa-trash-alt"></i></a>                
       </div>
-      <div class="card-content">
-        <span class="card-title"><strong>{{ post.title }}</strong></span>
-        <p><span><strong>Location:</strong> {{ post.location }}</span></p>
-        <p><span><strong>Date:</strong> {{ post.date }}</span></p>        
-      </div> 
-      <div class="card-action">        
-        <span>Created by:<em> {{ post.created_by | capitalize }}</em></span>
-        <!-- Action links -->
-        {% if session.user|lower == post.created_by|lower %}
-        <div class="right">               
-          <a class="black-text" href="{{ url_for('edit_post', blog_id=post._id) }}"><i class="far fa-edit"></i></a>
-          <!-- Modal Trigger -->
-          <a class="black-text modal-trigger" href="#modal1"><i class="far fa-trash-alt"></i></a>                
-       </div>
-       {% endif %}
+      {% endif %}
       </div>
-    </div>
-     <!-- Delete Modal -->
-     <div class="delete_modal">
-      <!-- Modal Structure -->
-      <div id="modal1" class="modal">
-         <div class="modal-content">
-            <h4>Are you sure you want to delete post?</h4>
-            <p>Deleted posts cannot be retrieved</p>
+      </div>
+      <!-- Delete Modal -->
+      <div class="delete_modal">
+         <!-- Modal Structure -->
+         <div id="modal1" class="modal">
+            <div class="modal-content">
+               <h4>Are you sure you want to delete post?</h4>
+               <p>Deleted posts cannot be retrieved</p>
+            </div>
+            <div class="modal-footer">
+               <a href="{{ url_for('delete_post', blog_id=post._id) }}"
+                  class="modal-close waves-effect waves-green btn-flat">Yes</a>
+               <a href="{{ url_for('my_page', username=session['user']) }}"
+                  class="modal-close waves-effect waves-green btn-flat">No</a>
+            </div>
          </div>
-         <div class="modal-footer">
-            <a href="{{ url_for('delete_post', blog_id=post._id) }}"
-               class="modal-close waves-effect waves-green btn-flat">Yes</a>
-            <a href="{{ url_for('my_page', username=session['user']) }}"
-               class="modal-close waves-effect waves-green btn-flat">No</a>
-         </div>
       </div>
+      </a>
    </div>
-  
-  </a>
-  </div>
-  {% endfor %}
+   {% endfor %}
 </div>
 {% else %}
 <h3 class="red-text center-align">Oops! No Results Found</h3>
 {% endif %}
-  
 {% endblock %}
