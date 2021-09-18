@@ -23,7 +23,9 @@ $(document).ready(function(){
 
 
   });
-
+/*
+30 Seconds Time out function for flash messages
+*/
   setTimeout(function() {
     $('#flashmessage').fadeOut('fast');
 }, 30000);

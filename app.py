@@ -1,4 +1,5 @@
 import os
+import random
 import datetime
 from flask import (
     Flask, flash, render_template,
@@ -22,6 +23,11 @@ mongo = PyMongo(app)
 @app.route("/")
 def home():
     posts = list(mongo.db.blog.find().sort("title", 1))
+    random.shuffle(posts)
+    """
+    Find posts from the database and
+    render posts randomly on home.html
+    """
     return render_template("home.html", posts=posts, page_title="Home")
 
 
@@ -36,6 +42,10 @@ def search():
     query = request.form.get("query")
     posts = list(mongo.db.blog.find(
         {"$text": {"$search": query}}).sort("title", 1))
+    """
+    Search for posts
+    return search results that match title"
+    """
     return render_template("blog.html", posts=posts, page_title="Blog")
 
 
@@ -53,14 +63,21 @@ def my_page(username):
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
+    """
+    Check if username already exists in database
+    If user exists,
+    Ensure hashed password matches user input
+    If password matches - login successful
+    If password doesnot match,
+    User is redirected to login page
+    If username doesnot exist,
+    Return to login page
+    """
     if request.method == "POST":
-
-        # check if username already exists in our database
         existing_user = mongo.db.users.find_one(
             {"username": request.form.get("username").lower()})
 
         if existing_user:
-            # ensure hashed password matches user input
             if check_password_hash(
                     existing_user["password"], request.form.get("password")):
                 session["user"] = request.form.get("username").lower()
@@ -68,12 +85,10 @@ def login():
                 return redirect(url_for(
                     "my_page", username=session["user"]))
             else:
-                # invalid password match
                 flash("Incorrect Username and/or Password")
                 return redirect(url_for("login"))
 
         else:
-            # username doesnt exist
             flash("Incorrect Username and/or Password")
             return redirect(url_for("login"))
 
@@ -82,7 +97,9 @@ def login():
 
 @app.route("/logout")
 def logout():
-    # remove user from session cookie
+    """
+    remove user from session cookie
+    """
     flash("You have been logged out")
     session.pop("user")
     return redirect(url_for("login"))
@@ -90,8 +107,15 @@ def logout():
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
+    """
+    check if username already exists in our database,
+    if username exists - redirect to register page,
+    Otherwise, registration is complete
+    And user is put in session cookie
+    User redirected to my_page.html
+    """
     if request.method == "POST":
-        # check if username already exists in our database
+
         existing_user = mongo.db.users.find_one(
             {"username": request.form.get("username").lower()})
 
@@ -106,7 +130,6 @@ def register():
         }
         mongo.db.users.insert_one(register)
 
-        # put the new user into 'session' cookie
         session["user"] = request.form.get("username").lower()
         flash("Registration Successful")
         return redirect(url_for("my_page", username=session["user"]))
@@ -115,6 +138,9 @@ def register():
 
 @app.route("/contact", methods=["GET", "POST"])
 def contact():
+    """
+    Contact Details are safely stored in contact collection in database
+    """
     if request.method == "POST":
         contact = {
             "first_name": request.form.get("first_name"),
@@ -131,6 +157,11 @@ def contact():
 
 @app.route("/create_post", methods=["GET", "POST"])
 def create_post():
+    """
+    Create a trek post
+    Add data to database
+    Bind data from database to html cards in my_page.html
+    """
     if "user" not in session:
         return redirect(url_for("login"))
 
@@ -156,6 +187,11 @@ def create_post():
 
 @app.route("/show_post/<blog_id>")
 def show_post(blog_id):
+    """
+    Show Trek details
+    If post not found in database,
+    Return 404 error
+    """
     post = mongo.db.blog.find_one_or_404({"_id": ObjectId(blog_id)})
 
     page_title = post["title"]
@@ -166,6 +202,11 @@ def show_post(blog_id):
 
 @app.route("/edit_post/<blog_id>", methods=["GET", "POST"])
 def edit_post(blog_id):
+    """
+    Check if User is in session
+    Edit post and Update to database
+    Bind updated information to card in html
+    """
     if "user" not in session:
         return redirect(url_for("login"))
 
@@ -193,6 +234,11 @@ def edit_post(blog_id):
 
 @app.route("/delete_post<blog_id>")
 def delete_post(blog_id):
+    """
+    If user not in session,
+    Return user to login page
+    Otherise, Delete post
+    """
     if "user" not in session:
         return redirect(url_for("login"))
 
@@ -208,17 +254,7 @@ def response_404(e):
     return render_template('404.html', page_title="404")
 
 
-@app.errorhandler(403)
-def response_403(e):
-    return render_template('403.html', page_title="403")
-
-
-@app.errorhandler(500)
-def response_500(e):
-    return render_template('500.html', page_title="500")
-
-
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
-            debug=True)  # change to False before submitting
+            debug=False)

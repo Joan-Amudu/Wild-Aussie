@@ -8,11 +8,33 @@ body {
 	flex-direction: column;
 }
 
-
 /*-- Sticky Footer--*/
 
 main {
 	flex: 1 0 auto;
+}
+
+/*-- Base Template --*/
+/*Navbar and footer*/
+.nav-extended,
+.page-footer {
+	background-color: #10375d;
+}
+/*brand logo*/
+.brand-logo {
+	font-family: Dancing Script;
+	padding-left: 30px;
+}
+/*flash messages*/
+.flash {	
+	padding: 20px;
+	background-color: #e0e2d5;	
+	z-index: 100;
+}
+/*main content*/
+.content {
+	background-color: #e0e2d5;
+	padding: 5%;
 }
 
 hr {
@@ -21,12 +43,13 @@ hr {
 	border: 0;
 	background-color: #10375d;
 }
-
-.nav-extended,
-.page-footer {
-	background-color: #10375d;
+.card-image img {
+	width: 232px;
+	height: 240px;
+	object-fit: cover;
 }
 
+/*-- Home Page--*/
 .hero_image {
   height: 100vh;
 	background: url('../images/hero-image.jpeg') no-repeat center center;
@@ -39,21 +62,7 @@ hr {
 	opacity: 0.9;
 }
 
-
-/* The alert message box */
-
-.flash {
-	padding: 20px;
-	background-color: #e0e2d5;	
-	z-index: 100;
-}
-
-#map {
-	overflow: hidden;
-}
-
-/* The close button */
-
+/* Buttons */
 .closebtn {
 	margin-left: 15px;
 	color: white;
@@ -65,16 +74,8 @@ hr {
 	transition: 0.3s;
 }
 
-
-/* When moving the mouse over the close button */
-
 .closebtn:hover {
 	color: black;
-}
-
-.brand-logo {
-	font-family: Dancing Script;
-	padding-left: 30px;
 }
 
 .btn {
@@ -87,31 +88,19 @@ btn:hover {
 	background-color: #10375d;
 }
 
-.content {
-	background-color: #e0e2d5;
-	padding: 5%;
-}
-
-.banner {
-
-	background-color: #e0e2d5;
-}
-
+/*Show Post*/
 #show-post img {
 	height: 400px;
 	width: 900px;
 }
 
+#map {
+	overflow: hidden;
+}
+
 .show-post {
 	border: 1px solid #000;
 }
-
-.card-image img {
-	width: 232px;
-	height: 240px;
-	object-fit: cover;
-}
-
 
 /*-- Footer --*/
 
