@@ -180,7 +180,7 @@ def create_post():
 
     posts = mongo.db.blog.find()
     return render_template(
-        "my_page.html", posts=posts, page_title="Create Trek")
+        "create_post.html", posts=posts, page_title="Create Post")
 
 
 @app.route("/show_post/<blog_id>")
