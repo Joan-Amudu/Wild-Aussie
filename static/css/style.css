@@ -96,12 +96,12 @@ btn:hover {
 .card-action a {
 	padding-bottom: 10px;
 }
-/*Show Post
+/* Show Post*/
 #show-post img {
 	height: 400px;
 	width: 900px;
 }
-*/
+
 #map {
 	overflow: hidden;
 }
@@ -114,8 +114,8 @@ btn:hover {
 
 .social {
 	display: flex;
-	justify-content: center;
-	padding-top: 20px;
+	justify-content: space-around;
+	
 }
 
 .social a {
@@ -123,6 +123,7 @@ btn:hover {
 	padding: 0 50px;
 }
 .social a:hover {
-	transform: scale(1.2);
+	color: #FAF9F6;
+	transform: scale(1.4);
 }
 

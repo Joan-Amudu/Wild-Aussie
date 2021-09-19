@@ -8,10 +8,10 @@
       <div id="show-post">
          <div class="col s12 m8 offset-m2"> 
             {% if post.image_url == "" or post.image_url is none %}
-            <img class="responsive-img" src="{{ url_for('static', filename='images/default-image.jpeg') }}"
+            <img src="{{ url_for('static', filename='images/default-image.jpeg') }}"
                alt="harbour bridge">
             {% else %}
-            <img class="responsive-img" src="{{ post.image_url }}" alt="url image">
+            <img src="{{ post.image_url }}" alt="url image">
             {% endif %}
          </div>
       </div>
