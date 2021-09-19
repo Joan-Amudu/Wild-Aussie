@@ -89,7 +89,8 @@ hr {
 btn:hover {
 	background-color: #10375d;
 }
-.card {
+.card,
+.card-image {
 	border-radius: 10px;
 }
 .card-action a {
