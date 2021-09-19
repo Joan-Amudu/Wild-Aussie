@@ -7,11 +7,37 @@ deployed site [here](https://wild-aussie.herokuapp.com/)
 This is a site where I can post places that I am going to so that friends can see and join. so if I am going hiking in the loo mountains, I can post this on the site severals days in advance to tell people/friends what I intend on during, like hiking the giant start way on Saturday. I will also give details of how I will go to the said location. I can also post pics before (maybe from the internet or from previous similar activity) and after(pictures taken on the actual day). I can also share tips of what to wear, how tough or easy the hike was, weather and also other interesting things like where to what other walks/hikes or fun things to do in that area. Other people can also comment and share their experiences and also tips/recommendations for other fun places to go to and activities to do (so a blog site for others who share their own experiences within Australia)
 
 
-## Index – Table of Contents
+## **Table of content** 
 
 - [User Experience (UX)](#user-experience--ux-)
-- [Deployment](#deployment)
+    - [Strategy](#strategy)
+      - [User stories](#user-stories)
+    - [Scope](#scope)
+    - [Structure](#structure)
+    - [Skeleton](#skeleton)
+    - [Design](#design)
+  - [Features](#features)
+    - [Existing features](#existing-features)
+    - [Future Development Features](#future-development-features)
+    - [Failed Features](#failed-features)
+  - [Technologies Used](#technology-used)
+    - [Languages](#languages)
+    - [Database](#database)
+    - [Libraries, frameworks and other technologies](#libraries-frameworks-and-other-technologies)
+  - [Code organisation](#code-organisation)
+  - [Data validation](#data-validation)
+  - [Testing](#testing)
 
+- [Deployment](#deployment)
+  - [Deployment through GitHub Pages](#deployment-through-gitHub-pages)
+  -[Forking the Repository](#forking-the-repository)
+  - [Cloning Project](#cloning-project)
+
+   - [Credits](#credits)
+     - [Code](#code)
+     - [Content](#content)
+     - [Media](#media)
+     - [Acknowledgment](#acknowledgments)
 
 *** 
 
@@ -23,9 +49,10 @@ This is a site where I can post places that I am going to so that friends can se
 
 My inspiration of writing the client and user stories is driven from [mountain goat](https://www.mountaingoatsoftware.com/agile/user-stories).
 
+### User Stories 
+
 ### Client Stories 
-* As a site administrator, I can read site memebers published information and approve or reject them so that only
-valid and appropriate content is published.
+* As a site administrator, I can read site memebers published information and approve or reject them so that only valid and appropriate content is published.
 * As a site administrator, I can delete any published information, so I can remove things that will no longer valid.
 * As a site administrator, I can edit any site member profile so that I can correct problems for members. 
 
@@ -35,12 +62,9 @@ valid and appropriate content is published.
 * As a site visitor, I can to find out what the site is about, so I can see if the site is for me without registering 
 * As a site visitor, I would like to be able to register quickly, so I can add my own blog posts 
 * As a site visitor, I can email news items to the editor, so they can be considered for publication. 
-* As a site visitor, I want to read a new article on the front page about once a week so that I’m up on all the latest
-happenings.
-* As a site visitor, I want the link from the article teaser to take me directly to the body of the article, not to
-another teaser setup, so that I can easily finish the article.
-*  As a site visitor, I want to be able to get back to the home page quickly and easily, so I don’t get lost navigating
-and so the site works like every other site in the world. 
+* As a site visitor, I want to read a new article on the front page about once a week so that I’m up on all the latest happenings.
+* As a site visitor, I want the link from the article teaser to take me directly to the body of the article, not to another teaser setup, so that I can easily finish the article.
+*  As a site visitor, I want to be able to get back to the home page quickly and easily, so I don’t get lost navigating and so the site works like every other site in the world. 
 * As a site visitor, I can sign up for a newsletter so that I get announcements about new courses and other
 information.
 
@@ -58,7 +82,164 @@ information.
 * As a user, I can read an FAQ so that all my questions are answered.
 * As a search engine, I can view a site map so that all pages are indexed.
 * As a user, I can read a privacy policy so that I know what’s private.
-  
+
+#### [Back to top](<#table-of-content>)
+
+## User stories out of scope / failed to implement
+### Client Stories 
+Because there is nos super user account, the following client stories were not implemented.
+* As a site administrator, I can read site members published information and approve or reject them so that only valid and appropriate content is published.
+* As a site administrator, I can delete any published information, so I can remove things that will no longer valid.
+* As a site administrator, I can edit any site member profile so that I can correct problems for members. 
+
+#### New User
+The following user stories were not implemented because the goals and direction of the project changed or they were out of scope of what is required for the project.
+* As a site visitor, I want to read a new article on the front page about once a week so that I’m up on all the latest happenings.
+* As a site visitor, I want the link from the article teaser to take me directly to the body of the article, not to another teaser setup, so that I can easily finish the article.
+* As a site visitor, I can sign up for a newsletter so that I get announcements about new courses and other information.
+
+#### Existing User
+The following user stories failed to implement due to a difficulty in rendering code correctly.
+* As a site member, I can add/edit/delete comments to my own and other profiles.
+* As a site member, I can reset my password easily.
+
+
+#### All Users 
+The following user stories were out of scope for the project, however can be implemented at a later stage.
+* As a user, I can read an FAQ so that all my questions are answered.
+* As a search engine, I can view a site map so that all pages are indexed.
+* As a user, I can read a privacy policy so that I know what’s private.
+
+
+#### [Back to top](<#table-of-content>)
+***
+## Scope
+
+User expectations
+* create Trek
+* Edit Trek
+* Delete Trek
+* Comment on other Treks
+* View other treks
+* Edit profile
+* Delete profile
+
+
+#### [Back to top](<#table-of-content>)
+***
+## Structure
+### Database
+* Mongogdb, a NOSQL database was used used to store data using key value pairs.
+* The ERD below shows the 3 collections and the relations between them
+
+* The ERD was designed *using [dbdiagram.io](https://dbdiagram.io/home)
+
+  - Inital entity realtionship diagram
+![updated ERD](static/images/database/erd-updated.png)
+
+* Click here for the [Initial ERD](static/images/database/erd.png)
+
+#### [Back to top](<#table-of-content>)
+***
+## Skeleton
+### Wireframes
+* Wireframes were created using the [Balsamiq](https://balsamiq.com/wireframes/) software.
+
+![Home](static/images/wireframes/home.png)
+
+* All Wireframes
+  - [blog](static/images/wireframes/blog.png)
+  - [login](static/images/wireframes/login.png)
+  - [register](static/images/wireframes/register.png)
+  - [contact-us](static/images/wireframes/contact-us.png)
+  - [create-post](static/images/wireframes/create-post.png)
+  - [edit-post](static/images/wireframes/edit-post.png)
+  - [my-page](static/images/wireframes/my-page.png)
+  - [show-post](static/images/wireframes/show-pots.png)
+
+* A pdf of the wireframes can be found [here](static/doc/wild-aussie-wireframes.pdf), by clicking on the download button in Github. (**Please Note:** _[Adobe Acrobat Reader](https://get.adobe.com/reader/) is required to view files in pdf format_).
+
+#### [Back to top](<#table-of-content>)
+***
+## Design
+The webiste's design and layout is based on fonts, colors, wireframes, images and icons.
+
+### Fonts
+* Google Fonts was imported to CSS with the **Dancing Script** for the brand name, **Zilla Slab** for the body and **sans-serif** as the fallback font.
+
+### Color Scheme
+* The color palatte was inspired by the costal colors in Australia
+![color-scheme](static/images/color-scheme.png)
+
+#### [Back to top](<#table-of-content>)
+***
+## Features
+### Existing Features
+Below are some of the existing features
+* Responsive Navbar
+* Social Media links
+* Registration page
+* Contcat us page
+* Log in page
+* user profile page
+* Search functionality
+
+
+### Future Development Features
+Below are some features to be implemented at a later stage
+* Profile picture
+* Edit and Delete profile functionalities
+* Comments
+* location specific maps
+* password reset functionality
+
+### Failed Features
+ #### Comments
+
+ Initially there was to be a comments functionality, where users can comment on other treks from the show_post.html. users could also be able to edit and delete their comments.
+
+ I had a comments collection in the database, however after so many trials and failures, including support from fellow students, I was not able to get the results I expected.
+
+**python code** -  Below is the basic py code from which I developed so many variations and still failed to implement the comments for this project and will be done at a later stage.
+
+      @app.route("/add_comment", methods=["GET", "POST"])
+        def add_comment():
+            if request.method == "POST":
+                comnt = {
+                    "first_name": request.form.get("first_name"),
+                    "comment": request.form.get("comment")
+                }
+                mongo.db.comments.insert_one(comnt)
+                flash("comment added successfully")
+
+            comment = mongo.db.comments.find()
+            return render_template("add_comment.html", comment=comment)
+
+* The commets section was taken out and  replaced with edit and delete functionalities on the show_post.html
+#### [Back to top](<#table-of-content>)
+***
+## Technologies Used
+### Languages
+* HTML5
+* CSS3
+* JavaScript
+* Python
+### Libraries, Frameworks and Templates
+* jquery
+* flask
+* jinja templates
+* Materialize CSS
+
+### Other Technologies
+* [Google maps](https://maps.google.com/)
+* [Font Awesome](https://fontawesome.com/)
+
+### Database
+* [MongoDB](https://www.mongodb.com/)
+
+
+#### [Back to top](<#table-of-content>)
+***
 
 ## Deployment
 

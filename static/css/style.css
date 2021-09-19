@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Zilla+Slab:ital,wght@0,300;0,400;1,300&display=swap');
 
 body {
-	font-family: Zilla Slab;
+	font-family: Zilla Slab, sans-serif;
 	/*-- Sticky Footer--*/
 	display: flex;
 	min-height: 100vh;
@@ -96,11 +96,11 @@ btn:hover {
 .card-action a {
 	padding-bottom: 10px;
 }
-/* Show Post*/
+/* Show Post
 #show-post img {
 	height: 400px;
 	width: 900px;
-}
+}*/
 
 #map {
 	overflow: hidden;
