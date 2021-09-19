@@ -58,7 +58,8 @@ def my_page(username):
 
     if "user" in session:
         return render_template(
-            "my_page.html", username=session["user"], posts=posts)
+            "my_page.html", username=session["user"],
+            posts=posts, page_title="My Page")
 
 
 @app.route("/login", methods=["GET", "POST"])
@@ -158,13 +159,9 @@ def contact():
 @app.route("/create_post", methods=["GET", "POST"])
 def create_post():
     """
-    Create a trek post
-    Add data to database
-    Bind data from database to html cards in my_page.html
-    """
     if "user" not in session:
         return redirect(url_for("login"))
-
+    """
     if request.method == "POST":
         task = {
             "title": request.form.get("title"),
@@ -182,7 +179,7 @@ def create_post():
         return redirect(url_for("create_post"))
 
     posts = mongo.db.blog.find()
-    return render_template("my_page.html", posts=posts)
+    return render_template("my_page.html", posts=posts, page_title="Create Trek")
 
 
 @app.route("/show_post/<blog_id>")
@@ -229,7 +226,7 @@ def edit_post(blog_id):
     post = mongo.db.blog.find_one_or_404({"_id": ObjectId(blog_id)})
 
     posts = mongo.db.blog.find()
-    return render_template("edit_post.html", posts=posts, post=post)
+    return render_template("edit_post.html", posts=posts, post=post, page_title="Edit Post")
 
 
 @app.route("/delete_post<blog_id>")
@@ -245,7 +242,7 @@ def delete_post(blog_id):
     mongo.db.blog.remove({"_id": ObjectId(blog_id)})
     flash("post deleted successfully")
 
-    return render_template("my_page.html")
+    return render_template("my_page.html", page_title="Delete Post")
 
 
 # Error Handlers
