@@ -1,24 +1,21 @@
 {% extends "base.html" %}
-{% block banner %}
+{% block content %}
 <!--title-->
+
 <h3 class="center-align"><strong>{{ post.title }}</strong></h3>
 <h6 class="center-align pink-text">POSTED ON {{ post.date }} BY {{ post.created_by }}</h6>
-<div class="row">
-   <div class="card">
-      <div id="show-post" class="card-image">
+
+      <div id="show-post">
          <div class="col s12 m8 offset-m2"> 
             {% if post.image_url == "" or post.image_url is none %}
-            <img src="{{ url_for('static', filename='images/default-image.jpeg') }}"
+            <img class="responsive-img" src="{{ url_for('static', filename='images/default-image.jpeg') }}"
                alt="harbour bridge">
             {% else %}
-            <img src="{{ post.image_url }}" alt="url image">
+            <img class="responsive-img" src="{{ post.image_url }}" alt="url image">
             {% endif %}
          </div>
       </div>
-   </div>
-</div>
-{% endblock %}
-{% block content %}
+
 <!--Edit and Delete controls-->
    {% if session.user|lower == post.created_by|lower %}
    <div>               
