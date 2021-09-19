@@ -158,10 +158,9 @@ def contact():
 
 @app.route("/create_post", methods=["GET", "POST"])
 def create_post():
-    """
     if "user" not in session:
         return redirect(url_for("login"))
-    """
+
     if request.method == "POST":
         task = {
             "title": request.form.get("title"),

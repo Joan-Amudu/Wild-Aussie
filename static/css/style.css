@@ -112,18 +112,12 @@ btn:hover {
 
 /*-- Footer --*/
 
-.social {
-	display: flex;
-	justify-content: space-around;
-	
-}
-
 .social a {
 	font-size: 1.5rem;
 	padding: 0 50px;
+	justify-content: space-around;
 }
 .social a:hover {
 	color: #FAF9F6;
-	transform: scale(1.4);
 }
 
