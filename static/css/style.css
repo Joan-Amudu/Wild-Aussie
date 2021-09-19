@@ -16,6 +16,7 @@ main {
 
 /*-- Base Template --*/
 /*Navbar and footer*/
+
 .nav-extended,
 .page-footer {
 	background-color: #10375d;
@@ -33,9 +34,10 @@ main {
 }
 /*main content*/
 .content {
-	background-color: #e0e2d5;
+	background-color: #FAF9F6;
 	padding: 5%;
 }
+
 
 hr {
 	width: 100px;
