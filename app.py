@@ -179,7 +179,8 @@ def create_post():
         return redirect(url_for("create_post"))
 
     posts = mongo.db.blog.find()
-    return render_template("my_page.html", posts=posts, page_title="Create Trek")
+    return render_template(
+        "my_page.html", posts=posts, page_title="Create Trek")
 
 
 @app.route("/show_post/<blog_id>")
@@ -226,7 +227,8 @@ def edit_post(blog_id):
     post = mongo.db.blog.find_one_or_404({"_id": ObjectId(blog_id)})
 
     posts = mongo.db.blog.find()
-    return render_template("edit_post.html", posts=posts, post=post, page_title="Edit Post")
+    return render_template(
+        "edit_post.html", posts=posts, post=post, page_title="Edit Post")
 
 
 @app.route("/delete_post<blog_id>")
