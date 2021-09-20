@@ -327,9 +327,9 @@ All Trek descriptions are from [National Parks NSW] https://www.nationalparks.ns
 ### General Inspiration
 Through out this project, I was inspired by the following repositories from fellow Code Institue Students:
 
-[Amy O'Shea](https://github.com/AmyOShea/MS3-Cocktail-Hour)
-[Claire](https://github.com/Code-Institute-Submissions/Codzilla)
-[Rebecca Kelsall](https://github.com/crypticCaroline/puppyplaymates)
+* [Amy O'Shea](https://github.com/AmyOShea/MS3-Cocktail-Hour)
+* [Claire](https://github.com/Code-Institute-Submissions/Codzilla)
+* [Rebecca Kelsall](https://github.com/crypticCaroline/puppyplaymates)
 
 #### [Back to top](<#table-of-content>)
 ***
