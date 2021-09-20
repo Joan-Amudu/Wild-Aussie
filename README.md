@@ -1,6 +1,6 @@
+![Wild Aussie](static/images/wild-aussie-responsive.png)
 
-
-deployed site [here](https://wild-aussie.herokuapp.com/)
+Click [here](https://wild-aussie.herokuapp.com/) for the deployed site.
 
 ## About  
 
@@ -45,8 +45,6 @@ Here fellow Trekkers can see what others have planned and join in on the same tr
 ## Strategy
 
 My inspiration of writing the client and user stories is driven from [mountain goat](https://www.mountaingoatsoftware.com/agile/user-stories).
-
-### User Stories 
 
 ### Client Stories 
 * As a site administrator, I can read site memebers published information and approve or reject them so that only valid and appropriate content is published.
@@ -239,6 +237,7 @@ Below are some features to be implemented at a later stage
 ***
 ## Testing
 Click here for [Testing Document](testing.md)
+
 #### [Back to top](<#table-of-content>)
 ***
 
@@ -291,7 +290,7 @@ By forking the GitHub Repository, you can make a copy of the original repository
 ![Git Clone](static/images/deployment/git-clone.png)
 5. Open Git Bash.
 6. Change the current working directory to the location where you want the cloned directory to be made.
-7. Type **git clone**, and then paste the URL you copied in Step 3.
+7. Type **git clone**, and then paste the URL you copied in Step 4.
 
 ```
  git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY
@@ -320,7 +319,7 @@ Click [Here](https://help.github.com/en/github/creating-cloning-and-archiving-re
 * [Natasha Funke/OEH](https://www.nationalparks.nsw.gov.au/-/media/npws/images/parks/ku-ring-gai-chase-national-park/west-head-army-track/west-head-army-track-01.jpg )
 * [Robert Mulally/DPIE](https://www.nationalparks.nsw.gov.au/visit-a-park/parks/thredbo-perisher-area )
 
-All Trek descriptions are from [National Parks NSW] https://www.nationalparks.nsw.gov.au/
+All Trek descriptions are from [National Parks NSW](https://www.nationalparks.nsw.gov.au)
 
 ### General Inspiration
 Through out this project, I was inspired by the following repositories from fellow Code Institue Students:
@@ -334,3 +333,6 @@ Through out this project, I was inspired by the following repositories from fell
 ## Acknowledgements
 I appreciate the guidance is recieved from my mentor Brain Macharia
 I appreciate support from fellow Trust in Soda (Team 10) hackathon members and Code Institute Slack community.
+
+#### [Back to top](<#table-of-content>)
+***
