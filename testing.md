@@ -69,14 +69,13 @@ TC0029 |My-Page - Loging in to user page | Flash message welcoming user is displ
 TC0030 |My-Page - Loging in to user page | Flash message should disapear after 30 seconds | Pass
 TC0031 |My-Page - Create Trek | This should redirect the user to Create Trek form | Pass
 TC0032 |My-Page - Create Trek | This action should display the page title at the top of the site window/tab along side with the brand name and logo | Pass
-
 TC0033 |Create Trek Form - Cancel | This should cancel the form and redirect the user back to their profile page | Pass
 TC0034 |Create Trek Form - Add | After adding all input information this should add a Trek card on user profile | Pass | Users must select a grade from the dropdown menu before they can add an Trek
 TC0035 |Treks - Clicking Delete Icon | Users should be prompted with a modal confirming the delete action| Pass
 TC0036 |Treks - Clicking Delete Icon - Yes | Selecting "Yes" will delete the Trek| Pass
 TC0037 |Treks - Clicking Delete Icon - No | Selecting "No" will return users back to user profile page view| Pass
 TC0038 |Trek Card - Clicking Card | Clicking anywhere on the card will redirect the user to the "show_post page| Pass | Valid only for logged in users
-TC0039 |Trek Crad - Edit Icon | This action should display the page title at the top of the site window/tab along side with the brand name and logo | Pass
+TC0039 |Trek Card - Edit Icon | This action should display the page title at the top of the site window/tab along side with the brand name and logo | Pass
 TC0040 |Trek Card - Edit icon - Save | This action should update the Trek, save to the database and return user to user profile page| Pass
 TC0041 |Trek card - Edit icon - Cancel | This action should cancel the form and return user to user profile page| Pass
 TC0042 |Show Post - Edit icon | Edit functionality should only be visible to the users who created the Trek| Pass | see TC0039 - 41
