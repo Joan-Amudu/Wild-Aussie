@@ -49,7 +49,7 @@ TC009 |Hovering over twitter icon on the Footer | The icon color should change t
 TC0010 |Clicking twitter icon on the Footer| The link should open in a new tab| Pass | Users much have a twitter account, or register for one.
 TC0011 |Hovering over instagram icon on the Footer| The icon color should change to white and the instagram HTTP link should be displayed from the bottom right of the page| Pass
 TC0012 |Clicking instagram icon on the Footer| The link should open in a new tab| Pass | Users must have an instagram account in order to login, or register for one.
-TC0013 |Clicking any featured Trek | If user is not logged in, clicking featured treks should direct the user to login page| Pass | Only Logged in Users can view more details about treks, clicking featured tresk will direct logged in user to show-post page.
+TC0013 |Clicking any featured Trek | If user is not logged in, clicking featured treks should direct the user to login page| Pass | Only Logged in Users can view more details about treks, clicking featured trek will direct logged in user to show-post page.
 TC0014 |Limited Menu Items for Non logged in users| Users who are not logged in or do not have a profile will only view limited menu items ie. Home, Log In, Register and Contact Us | Pass
 TC0015 |Clicking Login Menu Item| This action should display the page title at the top of the site window/tab along side with the brand name and logo | Pass
 TC0016 |Clicking Login Menu Item| This action should display the page which includes a form for users to login | Pass
@@ -110,13 +110,18 @@ This project was built using [Materialize](https://materializecss.com/), and mob
 
 ### Validators
 This project was built using [Materialize](https://materializecss.com/), and mobile first design and all pages are responsive on small, medium, large and extra-large screens
+**HTML Code** was passed through the **[W3C HTML Validator](https://validator.w3.org/ "W3C HTML Validator")**.
+![Validated HTML Code](static/images/validated-html.png)
+    * HTML heading tags doesnot affect the functionality or responsiveness of the site.
+
 
 **CSS Code** was passed through the **[W3C CSS Validator](https://jigsaw.w3.org/css-validator/ "W3C CSS Validator")**.
-
 ![validated CSS Code](static/images/css-validator.png)
 
+    * No errors found
 **Python Code** was passed through **[PEP8 Online](http://pep8online.com/)
 ![Validated Python Code](static/images/py-validator.png)
-
+    * No errors found 
+    
 #### [Back to top](<#table-of-content>)
 ***
