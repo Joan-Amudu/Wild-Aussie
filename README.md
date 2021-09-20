@@ -334,3 +334,5 @@ Through out this project, I was inspired by the following repositories from fell
 #### [Back to top](<#table-of-content>)
 ***
 ## Acknowledgements
+I appreciate the guidance is recieved from my mentor Brain Macharia
+I appreciate support from fellow Trust in Soda (Team 10) hackathon members and Code Institute Slack community.
