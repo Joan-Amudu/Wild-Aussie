@@ -70,7 +70,7 @@ TC0030 |My-Page - Loging in to user page | Flash message should disapear after 3
 TC0031 |My-Page - Create Trek | This should redirect the user to Create Trek form | Pass
 TC0032 |My-Page - Create Trek | This action should display the page title at the top of the site window/tab along side with the brand name and logo | Pass
 TC0033 |Create Trek Form - Cancel | This should cancel the form and redirect the user back to their profile page | Pass
-TC0034 |Create Trek Form - Add | After adding all input information this should add a Trek card on user profile | Pass | Users must select a grade from the dropdown menu before they can add an Trek
+TC0034 |Create Trek Form - Add | After adding all input information this should add a Trek card on user profile | Pass | Users must select a grade from the dropdown menu before they can add a Trek
 TC0035 |Treks - Clicking Delete Icon | Users should be prompted with a modal confirming the delete action| Pass
 TC0036 |Treks - Clicking Delete Icon - Yes | Selecting "Yes" will delete the Trek| Pass
 TC0037 |Treks - Clicking Delete Icon - No | Selecting "No" will return users back to user profile page view| Pass
