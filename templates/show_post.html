@@ -8,10 +8,10 @@
          <div class="col s12 m8 offset-m2"> 
             <div class="card-panel">
                {% if post.image_url == "" or post.image_url is none %}
-                  <img src="{{ url_for('static', filename='images/default-image.jpeg') }}"
-                   width="900" height="400"  alt="harbour bridge">
+                  <img class="responsive-img" src="{{ url_for('static', filename='images/default-image.jpeg') }}"
+                     alt="harbour bridge">
                {% else %}
-                  <img src="{{ post.image_url }}" width="900" height="400" alt="url image">
+                  <img class="responsive-img" src="{{ post.image_url }}" alt="url image">
                {% endif %}
                
             </div>
