@@ -44,7 +44,7 @@
          <!--Mobile side Nav-->
          <ul class="sidenav" id="mobile-demo">
             <li>
-               <h4 class="brand-logo center-align black-text">wild aussie</h4>
+               <a href="{{ url_for('home') }}" class="brand-logo black-text darken-4">wild aussie</a>
             </li>            
             <li><a class="black-text" href="{{ url_for('home') }}">Home</a></li>
             {% if session.user %}
