@@ -108,10 +108,9 @@ This project was built using [Materialize](https://materializecss.com/), and mob
 ***
 
 ### Validators
-This project was built using [Materialize](https://materializecss.com/), and mobile first design and all pages are responsive on small, medium, large and extra-large screens
 **HTML Code** was passed through the **[W3C HTML Validator](https://validator.w3.org/ "W3C HTML Validator")**.
 ![Validated HTML Code](static/images/validated-html.png)
-    * HTML heading tags doesnot affect the functionality or responsiveness of the site.
+    * Because of the use of jinja and flask templating, h2-h6 heading tags were not used on base.html template. The elimination of HTML heading tags doesnot affect the functionality or responsiveness of the site.
 
 
 **CSS Code** was passed through the **[W3C CSS Validator](https://jigsaw.w3.org/css-validator/ "W3C CSS Validator")**.
